@@ -10,4 +10,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    // Deshabilita minificación CSS para evitar crash con sintaxis Tailwind v4
+    // que lightningcss (minificador de Vite 8) no soporta
+    cssMinify: false,
+  },
 })
