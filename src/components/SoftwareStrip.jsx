@@ -9,12 +9,12 @@ import { Video, BarChart2, PenTool, Palette } from 'lucide-react';
 import { SiWordpress, SiMeta } from 'react-icons/si';
 
 const SOFTWARE = [
-  { Icon: SiWordpress, label: 'WordPress',   desc: 'CMS y sitios web' },
-  { Icon: Video,       label: 'CapCut',      desc: 'Edición de video' },
-  { Icon: Palette,     label: 'Photoshop',   desc: 'Diseño gráfico' },
-  { Icon: PenTool,     label: 'Illustrator', desc: 'Ilustración vectorial' },
-  { Icon: SiMeta,      label: 'Meta Ads',    desc: 'Publicidad en redes' },
-  { Icon: BarChart2,   label: 'Analytics',   desc: 'Análisis de métricas' },
+  { Icon: SiWordpress, label: 'WordPress',   desc: 'Nivel básico' },
+  { Icon: Video,       label: 'CapCut',      desc: 'Nivel básico' },
+  { Icon: Palette,     label: 'Photoshop',   desc: 'Nivel básico' },
+  { Icon: PenTool,     label: 'Illustrator', desc: 'Nivel básico' },
+  { Icon: SiMeta,      label: 'Meta Ads',    desc: 'Nivel básico' },
+  { Icon: BarChart2,   label: 'Analytics',   desc: 'Nivel básico' },
 ];
 
 export default function SoftwareStrip() {

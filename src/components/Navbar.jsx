@@ -4,7 +4,7 @@ import {
   Image, Share2, PlayCircle,
   Layers, ChevronDown, Sun, Moon,
 } from 'lucide-react';
-import { FaInstagram, FaTiktok, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const NAV_LINKS = [
   { href: 'inicio',      label: 'Inicio',      Icon: Home },
@@ -22,7 +22,6 @@ const ALL_LINKS = [...NAV_LINKS, ...PORTFOLIO_LINKS];
 
 const SOCIAL_LINKS = [
   { url: 'https://www.instagram.com/hobishinee_',                              Icon: FaInstagram,  label: 'Instagram' },
-  { url: 'https://www.tiktok.com/@hobishinee__',                               Icon: FaTiktok,     label: 'TikTok' },
   { url: 'https://mx.linkedin.com/in/maria-julia-valdez-navarro-42696828a',    Icon: FaLinkedinIn, label: 'LinkedIn' },
 ];
 

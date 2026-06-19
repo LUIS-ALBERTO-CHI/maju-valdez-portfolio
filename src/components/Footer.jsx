@@ -1,16 +1,11 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { FaInstagram, FaTiktok, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const SOCIALS = [
   {
     href: 'https://www.instagram.com/hobishinee_?igsh=MXZzcHR3ajk4anRwMw==',
     Icon: FaInstagram,
     label: 'Instagram',
-  },
-  {
-    href: 'https://www.tiktok.com/@hobishinee__?_t=ZS-90a8nkek4QS&_r=1',
-    Icon: FaTiktok,
-    label: 'TikTok',
   },
   {
     href: 'https://mx.linkedin.com/in/maria-julia-valdez-navarro-42696828a',
