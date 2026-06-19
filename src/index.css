@@ -556,8 +556,116 @@ section + section {
 
 
 /* ==============================
-   Education — Bento Grid
+   Education — Simple Cards
    ============================== */
+
+.edu-old-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.edu-old-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.edu-old-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+.edu-old-card--featured {
+  border-color: var(--accent-hot);
+}
+
+.edu-old-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-hot) 12%, transparent);
+  color: var(--accent-hot);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+
+.edu-old-institution {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.3;
+}
+.edu-old-institution--featured {
+  color: var(--accent-hot);
+}
+
+.edu-old-degree {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.edu-old-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent-hot) 12%, transparent);
+  color: var(--accent-hot);
+  font-size: 0.72rem;
+  font-weight: 600;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.edu-old-date {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Pagination */
+.edu-old-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+.edu-old-page-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.edu-old-page-btn:hover {
+  border-color: var(--accent-hot);
+  color: var(--accent-hot);
+}
+.edu-old-page-btn--active {
+  background: var(--accent-hot);
+  border-color: var(--accent-hot);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .edu-old-grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  .edu-old-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
 
 /* Blobs */
 .edu-blob {
