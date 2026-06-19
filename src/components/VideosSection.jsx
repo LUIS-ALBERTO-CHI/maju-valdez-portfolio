@@ -5,117 +5,43 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { ChevronLeft, ChevronRight, Play, Film } from 'lucide-react';
 import { r2Video } from '../config/r2';
 
+/* ─────────────────────────────────────────
+   Videos data — static thumbnails from /public/files/
+   (no canvas extraction needed)
+───────────────────────────────────────── */
 const VIDEOS = [
-  { src: r2Video('VIDEO COMBO FINAL CON LO DE ARIIBA KUBOTA.mp4'), title: 'Combo Kubota',        category: 'Maquinaria' },
-  { src: r2Video('Doc Viviany Reel Finnal.mp4'),                   title: 'Reel Nupec',          category: 'Nutrición' },
-  { src: r2Video('MANTENIMIENTO KUBOTA CORREGIDO.mp4'),             title: 'Mantenimiento Kubota', category: 'Maquinaria' },
-  { src: r2Video('maquillaje.mp4'),                                 title: 'Paleta de sombras',   category: 'Belleza' },
-  { src: r2Video('KUBOTA.mp4'),                                     title: 'Kubota',              category: 'Maquinaria' },
-  { src: r2Video('TIKAL1.mp4'),                                     title: 'Tikal Sale',          category: 'Bienes Raíces' },
-  { src: r2Video('TIKAL2.mp4'),                                     title: 'Casas color pastel',  category: 'Bienes Raíces' },
-  { src: r2Video('TIKAL3.mp4'),                                     title: 'Bodegas',             category: 'Bienes Raíces' },
-  { src: r2Video('TIKAL4.mp4'),                                     title: 'Casas Coloniales',    category: 'Bienes Raíces' },
-  { src: r2Video('gusano.mp4'),                                     title: 'Gusano Barrenador',   category: 'Agricultura' },
-  { src: r2Video('mascotas1.mp4'),                                  title: 'Mascotas 1',          category: 'Mascotas' },
-  { src: r2Video('mascotas2.mp4'),                                  title: 'Mascotas 2',          category: 'Mascotas' },
-  { src: r2Video('mascotas3.mp4'),                                  title: 'Mascotas 3',          category: 'Mascotas' },
+  { src: r2Video('VIDEO COMBO FINAL CON LO DE ARIIBA KUBOTA.mp4'), thumb: '/files/COMBO.jpg',      title: 'Combo Kubota',        category: 'Maquinaria'    },
+  { src: r2Video('Doc Viviany Reel Finnal.mp4'),                   thumb: '/files/reel.jpg',        title: 'Reel Nupec',          category: 'Nutrición'     },
+  { src: r2Video('MANTENIMIENTO KUBOTA CORREGIDO.mp4'),             thumb: '/files/KUBOTA.jpg',      title: 'Mantenimiento Kubota',category: 'Maquinaria'    },
+  { src: r2Video('maquillaje.mp4'),                                 thumb: '/files/maquillaje.jpg',  title: 'Paleta de sombras',   category: 'Belleza'       },
+  { src: r2Video('KUBOTA.mp4'),                                     thumb: '/files/KUBOTA.jpg',      title: 'Kubota',              category: 'Maquinaria'    },
+  { src: r2Video('TIKAL1.mp4'),                                     thumb: '/files/TIKAL1.jpg',      title: 'Tikal Sale',          category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL2.mp4'),                                     thumb: '/files/TIKAL2.jpg',      title: 'Casas color pastel',  category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL3.mp4'),                                     thumb: '/files/TIKAL3.jpg',      title: 'Bodegas',             category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL4.mp4'),                                     thumb: '/files/TIKAL4.jpg',      title: 'Casas Coloniales',    category: 'Bienes Raíces' },
+  { src: r2Video('gusano.mp4'),                                     thumb: '/files/gusano.jpg',      title: 'Gusano Barrenador',   category: 'Agricultura'   },
+  { src: r2Video('mascotas1.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 1',          category: 'Mascotas'      },
+  { src: r2Video('mascotas2.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 2',          category: 'Mascotas'      },
+  { src: r2Video('mascotas3.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 3',          category: 'Mascotas'      },
 ];
 
-const encodeVideoSrc = (src) => src.replace(/ /g, '%20');
-
-/**
- * Extracts a thumbnail frame from a video using canvas.
- * Only loads the video when the card enters the viewport (IntersectionObserver).
- * Seeks to 10% of duration (min 1s, max 5s) for a representative frame.
- */
-function VideoThumbnail({ src }) {
-  const containerRef = useRef(null);
-  const [dataUrl, setDataUrl] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError]   = useState(false);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting || started.current) return;
-        started.current = true;
-        observer.disconnect();
-
-        const video = document.createElement('video');
-        video.crossOrigin  = 'anonymous';
-        video.preload      = 'metadata';
-        video.muted        = true;
-        video.playsInline  = true;
-        video.src          = src;
-
-        const onMeta = () => {
-          // Seek to 10% of duration, clamped between 1s and 5s
-          const target = Math.min(Math.max(video.duration * 0.1, 1), 5);
-          video.currentTime = isFinite(target) ? target : 1;
-        };
-
-        const onSeeked = () => {
-          try {
-            const canvas = document.createElement('canvas');
-            canvas.width  = video.videoWidth  || 640;
-            canvas.height = video.videoHeight || 360;
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            setDataUrl(canvas.toDataURL('image/jpeg', 0.85));
-          } catch {
-            setError(true);
-          } finally {
-            setLoading(false);
-            // Free memory — remove src so the browser releases the partial download
-            video.removeEventListener('loadedmetadata', onMeta);
-            video.removeEventListener('seeked', onSeeked);
-            video.removeEventListener('error', onError);
-            video.src = '';
-            video.load();
-          }
-        };
-
-        const onError = () => {
-          setError(true);
-          setLoading(false);
-        };
-
-        video.addEventListener('loadedmetadata', onMeta);
-        video.addEventListener('seeked', onSeeked);
-        video.addEventListener('error', onError);
-        video.load();
-      },
-      { rootMargin: '300px' } // start loading 300px before entering viewport
-    );
-
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, [src]);
-
+/* ─────────────────────────────────────────
+   Static thumbnail (instant, works on mobile)
+───────────────────────────────────────── */
+function VideoThumbnail({ thumb, title }) {
+  const [loaded, setLoaded] = useState(false);
   return (
-    <div ref={containerRef} className="vid-thumb-frame">
-      {/* Extracted frame */}
-      {dataUrl && (
-        <img
-          src={dataUrl}
-          alt=""
-          className="vid-thumb-img"
-          draggable="false"
-        />
-      )}
-
-      {/* Loading skeleton */}
-      {loading && !dataUrl && (
-        <div className="vid-thumb-skeleton">
-          <Film size={28} strokeWidth={1.5} className="vid-thumb-skeleton-icon" />
-        </div>
-      )}
-
-      {/* Error fallback */}
-      {error && !dataUrl && (
+    <div className="vid-thumb-frame">
+      <img
+        src={thumb}
+        alt={title}
+        className="vid-thumb-img"
+        draggable="false"
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+      />
+      {!loaded && (
         <div className="vid-thumb-skeleton">
           <Film size={28} strokeWidth={1.5} className="vid-thumb-skeleton-icon" />
         </div>
@@ -132,12 +58,7 @@ export default function VideosSection({ onVideoClick }) {
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: 'center',
-      containScroll: false,
-      slidesToScroll: 1,
-    },
+    { loop: true, align: 'center', containScroll: false, slidesToScroll: 1 },
     [autoplayPlugin]
   );
 
@@ -160,7 +81,7 @@ export default function VideosSection({ onVideoClick }) {
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-  const scrollTo  = useCallback((i) => emblaApi?.scrollTo(i), [emblaApi]);
+  const scrollTo   = useCallback((i) => emblaApi?.scrollTo(i), [emblaApi]);
 
   const current = VIDEOS[selectedIndex];
 
@@ -199,15 +120,15 @@ export default function VideosSection({ onVideoClick }) {
               >
                 <article
                   className="vid-card"
-                  onClick={() => onVideoClick(encodeVideoSrc(video.src))}
+                  onClick={() => onVideoClick(video.src)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && onVideoClick(encodeVideoSrc(video.src))}
+                  onKeyDown={(e) => e.key === 'Enter' && onVideoClick(video.src)}
                   aria-label={`Reproducir ${video.title}`}
                 >
-                  {/* Thumbnail — auto-extracted from video */}
+                  {/* Static thumbnail */}
                   <div className="vid-thumb-wrap">
-                    <VideoThumbnail src={encodeVideoSrc(video.src)} />
+                    <VideoThumbnail thumb={video.thumb} title={video.title} />
 
                     {/* Gradient overlay */}
                     <div className="vid-thumb-gradient" />
@@ -243,12 +164,10 @@ export default function VideosSection({ onVideoClick }) {
 
       {/* ── COUNTER + DOTS ── */}
       <div className="vid-footer-row">
-        {/* Live counter */}
         <span className="vid-counter" aria-live="polite">
           <strong>{selectedIndex + 1}</strong> / {VIDEOS.length}
         </span>
 
-        {/* Dots */}
         <div className="vid-dots" role="tablist" aria-label="Indicadores de video">
           {scrollSnaps.map((_, i) => (
             <button
@@ -262,7 +181,6 @@ export default function VideosSection({ onVideoClick }) {
           ))}
         </div>
 
-        {/* Active title */}
         <span className="vid-active-title" aria-live="polite">{current.title}</span>
       </div>
     </section>
