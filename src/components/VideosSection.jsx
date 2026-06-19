@@ -3,21 +3,22 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { ChevronLeft, ChevronRight, Play, Film } from 'lucide-react';
+import { r2Video } from '../config/r2';
 
 const VIDEOS = [
-  { src: '/videos/VIDEO COMBO FINAL CON LO DE ARIIBA KUBOTA.mp4', title: 'Combo Kubota',        category: 'Maquinaria' },
-  { src: '/videos/Doc Viviany Reel Finnal.mp4',                   title: 'Reel Nupec',          category: 'Nutrición' },
-  { src: '/videos/MANTENIMIENTO KUBOTA CORREGIDO.mp4',             title: 'Mantenimiento Kubota', category: 'Maquinaria' },
-  { src: '/videos/maquillaje.mp4',                                 title: 'Paleta de sombras',   category: 'Belleza' },
-  { src: '/videos/KUBOTA.mp4',                                     title: 'Kubota',              category: 'Maquinaria' },
-  { src: '/videos/TIKAL1.mp4',                                     title: 'Tikal Sale',          category: 'Bienes Raíces' },
-  { src: '/videos/TIKAL2.mp4',                                     title: 'Casas color pastel',  category: 'Bienes Raíces' },
-  { src: '/videos/TIKAL3.mp4',                                     title: 'Bodegas',             category: 'Bienes Raíces' },
-  { src: '/videos/TIKAL4.mp4',                                     title: 'Casas Coloniales',    category: 'Bienes Raíces' },
-  { src: '/videos/gusano.mp4',                                     title: 'Gusano Barrenador',   category: 'Agricultura' },
-  { src: '/videos/mascotas1.mp4',                                  title: 'Mascotas 1',          category: 'Mascotas' },
-  { src: '/videos/mascotas2.mp4',                                  title: 'Mascotas 2',          category: 'Mascotas' },
-  { src: '/videos/mascotas3.mp4',                                  title: 'Mascotas 3',          category: 'Mascotas' },
+  { src: r2Video('VIDEO COMBO FINAL CON LO DE ARIIBA KUBOTA.mp4'), title: 'Combo Kubota',        category: 'Maquinaria' },
+  { src: r2Video('Doc Viviany Reel Finnal.mp4'),                   title: 'Reel Nupec',          category: 'Nutrición' },
+  { src: r2Video('MANTENIMIENTO KUBOTA CORREGIDO.mp4'),             title: 'Mantenimiento Kubota', category: 'Maquinaria' },
+  { src: r2Video('maquillaje.mp4'),                                 title: 'Paleta de sombras',   category: 'Belleza' },
+  { src: r2Video('KUBOTA.mp4'),                                     title: 'Kubota',              category: 'Maquinaria' },
+  { src: r2Video('TIKAL1.mp4'),                                     title: 'Tikal Sale',          category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL2.mp4'),                                     title: 'Casas color pastel',  category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL3.mp4'),                                     title: 'Bodegas',             category: 'Bienes Raíces' },
+  { src: r2Video('TIKAL4.mp4'),                                     title: 'Casas Coloniales',    category: 'Bienes Raíces' },
+  { src: r2Video('gusano.mp4'),                                     title: 'Gusano Barrenador',   category: 'Agricultura' },
+  { src: r2Video('mascotas1.mp4'),                                  title: 'Mascotas 1',          category: 'Mascotas' },
+  { src: r2Video('mascotas2.mp4'),                                  title: 'Mascotas 2',          category: 'Mascotas' },
+  { src: r2Video('mascotas3.mp4'),                                  title: 'Mascotas 3',          category: 'Mascotas' },
 ];
 
 const encodeVideoSrc = (src) => src.replace(/ /g, '%20');
