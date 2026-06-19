@@ -1,21 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { flushSync } from 'react-dom';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import BackgroundLayer from './components/BackgroundLayer';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BrandsStrip from './components/BrandsStrip';
-import ExperienceSection from './components/ExperienceSection';
-import EducationSection from './components/EducationSection';
-import ProyectosSection from './components/ProyectosSection';
-import CuentasSection from './components/CuentasSection';
-import VideosSection from './components/VideosSection';
-import SoftwareStrip from './components/SoftwareStrip';
-import Footer from './components/Footer';
-import VideoModal from './components/VideoModal';
-import ImageModal from './components/ImageModal';
+import Hero from './components/Hero';        // above-fold → eager
+import BrandsStrip from './components/BrandsStrip'; // just below hero → eager
+
+// Below-fold sections — lazy loaded only when needed
+const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
+const EducationSection  = lazy(() => import('./components/EducationSection'));
+const ProyectosSection  = lazy(() => import('./components/ProyectosSection'));
+const CuentasSection    = lazy(() => import('./components/CuentasSection'));
+const VideosSection     = lazy(() => import('./components/VideosSection'));
+const SoftwareStrip     = lazy(() => import('./components/SoftwareStrip'));
+const Footer            = lazy(() => import('./components/Footer'));
+const VideoModal        = lazy(() => import('./components/VideoModal'));
+const ImageModal        = lazy(() => import('./components/ImageModal'));
 
 const SECTIONS = ['inicio', 'experiencia', 'educacion', 'proyectos', 'cuentas', 'videos'];
+
+// Minimal fallback — invisible, sections animate in via IntersectionObserver anyway
+const Blank = () => <div aria-hidden="true" />;
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
@@ -135,26 +140,47 @@ export default function App() {
         activeSection={activeSection}
       />
 
+      {/* Above-fold: eager */}
       <Hero />
       <BrandsStrip />
-      <ExperienceSection />
-      <EducationSection />
-      <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
-      <CuentasSection />
-      <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
-      <SoftwareStrip />
-      <Footer />
+
+      {/* Below-fold: lazy — load only when React renders them */}
+      <Suspense fallback={<Blank />}>
+        <ExperienceSection />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <EducationSection />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <CuentasSection />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <SoftwareStrip />
+      </Suspense>
+      <Suspense fallback={<Blank />}>
+        <Footer />
+      </Suspense>
 
       {/* Modals */}
-      <VideoModal
-        src={videoSrc}
-        onClose={() => setVideoSrc(null)}
-      />
-      <ImageModal
-        src={imageSrc.src}
-        alt={imageSrc.alt}
-        onClose={() => setImageSrc({ src: null, alt: null })}
-      />
+      <Suspense fallback={null}>
+        <VideoModal
+          src={videoSrc}
+          onClose={() => setVideoSrc(null)}
+        />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ImageModal
+          src={imageSrc.src}
+          alt={imageSrc.alt}
+          onClose={() => setImageSrc({ src: null, alt: null })}
+        />
+      </Suspense>
     </div>
     </TooltipProvider>
   );

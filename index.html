@@ -79,13 +79,23 @@
     ══════════════════════════════════════ -->
     <!-- Critical profile photo -->
     <link rel="preload" as="image" href="/files/foto.png" />
-    <!-- Google Fonts -->
+    <!-- Preconnect a R2 para miniaturas de video -->
+    <link rel="preconnect" href="https://pub-6b6960a17bda429581f686a75351508f.r2.dev" crossorigin />
+    <!-- Google Fonts — carga async para no bloquear el primer paint -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+      />
+    </noscript>
 
     <!-- ══════════════════════════════════════
          THEME & FAVICON

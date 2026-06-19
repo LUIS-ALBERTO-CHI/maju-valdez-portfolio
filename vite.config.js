@@ -11,8 +11,27 @@ export default defineConfig({
     },
   },
   build: {
-    // Deshabilita minificación CSS para evitar crash con sintaxis Tailwind v4
-    // que lightningcss (minificador de Vite 8) no soporta
+    // Deshabilita minificación CSS — lightningcss no soporta sintaxis Tailwind v4
     cssMinify: false,
+
+    // Divide el bundle en chunks menores para carga más rápida
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor-react';
+          }
+          if (id.includes('embla-carousel')) {
+            return 'vendor-embla';
+          }
+          if (id.includes('lucide-react') || id.includes('react-icons')) {
+            return 'vendor-icons';
+          }
+          if (id.includes('@radix-ui')) {
+            return 'vendor-ui';
+          }
+        },
+      },
+    },
   },
 })
