@@ -1975,3 +1975,58 @@ section + section {
   --font-sans: 'Inter', 'Poppins', sans-serif;
   --font-heading: 'Poppins', 'Inter', sans-serif;
 }
+
+/* ==============================
+   WhatsApp Floating Button
+   ============================== */
+.wa-float-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px 12px 14px;
+  border-radius: 50px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.25s ease,
+              padding 0.25s ease;
+  animation: wa-enter 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 1.2s;
+}
+
+@keyframes wa-enter {
+  from { opacity: 0; transform: translateY(30px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.wa-float-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55);
+}
+
+.wa-float-label {
+  display: inline;
+}
+
+/* En mobile oculta el texto y deja solo el ícono */
+@media (max-width: 480px) {
+  .wa-float-btn {
+    padding: 13px;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 16px;
+  }
+  .wa-float-label {
+    display: none;
+  }
+}

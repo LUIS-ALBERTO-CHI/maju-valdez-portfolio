@@ -5,6 +5,7 @@ import BackgroundLayer from './components/BackgroundLayer';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';        // above-fold → eager
 import BrandsStrip from './components/BrandsStrip'; // just below hero → eager
+import WhatsAppButton from './components/WhatsAppButton'; // floating, always visible
 
 // Below-fold sections — lazy loaded only when needed
 const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
@@ -181,6 +182,9 @@ export default function App() {
           onClose={() => setImageSrc({ src: null, alt: null })}
         />
       </Suspense>
+
+      {/* WhatsApp floating button — always visible */}
+      <WhatsAppButton />
     </div>
     </TooltipProvider>
   );
