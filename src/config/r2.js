@@ -10,7 +10,7 @@
  * 6. Sube los archivos MP4 desde tu computadora (drag & drop en la web de Cloudflare)
  */
 
-export const R2_BASE_URL = 'https://pub-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.r2.dev';
+export const R2_BASE_URL = 'https://pub-6b6960a17bda429581f686a75351508f.r2.dev';
 
 /**
  * Construye la URL completa de un video en R2.
