@@ -20,9 +20,9 @@ const VIDEOS = [
   { src: r2Video('TIKAL3.mp4'),                                     thumb: '/files/TIKAL3.jpg',      title: 'Bodegas',             category: 'Bienes Raíces' },
   { src: r2Video('TIKAL4.mp4'),                                     thumb: '/files/TIKAL4.jpg',      title: 'Casas Coloniales',    category: 'Bienes Raíces' },
   { src: r2Video('gusano.mp4'),                                     thumb: '/files/gusano.jpg',      title: 'Gusano Barrenador',   category: 'Agricultura'   },
-  { src: r2Video('mascotas1.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 1',          category: 'Mascotas'      },
-  { src: r2Video('mascotas2.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 2',          category: 'Mascotas'      },
-  { src: r2Video('mascotas3.mp4'),                                  thumb: '/files/masc.png',        title: 'Mascotas 3',          category: 'Mascotas'      },
+  { src: r2Video('mascotas1.mp4'),                                  thumb: '/files/mascotas1.jpg',   title: 'Mascotas 1',          category: 'Mascotas'      },
+  { src: r2Video('mascotas2.mp4'),                                  thumb: '/files/mascotas2.jpg',   title: 'Mascotas 2',          category: 'Mascotas'      },
+  { src: r2Video('mascotas3.mp4'),                                  thumb: '/files/mascotas3.jpg',   title: 'Mascotas 3',          category: 'Mascotas'      },
 ];
 
 /* ─────────────────────────────────────────
