@@ -4,13 +4,13 @@ import { Video, BarChart2, PenTool, Palette } from 'lucide-react';
 import { SiWordpress, SiMeta, SiCanva } from 'react-icons/si';
 
 const SOFTWARE = [
-  { Icon: SiWordpress, label: 'WordPress',   level: 'Nivel básico' },
-  { Icon: Video,       label: 'CapCut',      level: 'Nivel básico' },
-  { Icon: Palette,     label: 'Photoshop',   level: 'Nivel básico' },
-  { Icon: PenTool,     label: 'Illustrator', level: 'Nivel básico' },
-  { Icon: SiMeta,      label: 'Meta Ads',    level: 'Nivel básico' },
-  { Icon: BarChart2,   label: 'Analytics',   level: 'Nivel básico' },
-  { Icon: SiCanva,     label: 'Canva',       level: 'Nivel intermedio' },
+  { Icon: SiWordpress, label: 'WordPress',   level: '' },
+  { Icon: Video,       label: 'CapCut',      level: '' },
+  { Icon: Palette,     label: 'Photoshop',   level: 'Nivel intermedio' },
+  { Icon: PenTool,     label: 'Illustrator', level: 'Nivel intermedio' },
+  { Icon: SiMeta,      label: 'Meta Ads',    level: '' },
+  { Icon: BarChart2,   label: 'Analytics',   level: '' },
+  { Icon: SiCanva,     label: 'Canva',       level: '' },
 ];
 
 export default function SoftwareStrip() {
@@ -59,20 +59,22 @@ export default function SoftwareStrip() {
                 {label}
               </span>
 
-              {/* Level badge — always visible */}
-              <span
-                style={{
-                  fontSize: '0.68rem',
-                  fontWeight: 600,
-                  padding: '2px 9px',
-                  borderRadius: '20px',
-                  background: 'color-mix(in srgb, var(--accent-hot) 12%, transparent)',
-                  color: 'var(--accent-hot)',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {level}
-              </span>
+              {/* Level badge — only shown when level is set */}
+              {level && (
+                <span
+                  style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 600,
+                    padding: '2px 9px',
+                    borderRadius: '20px',
+                    background: 'color-mix(in srgb, var(--accent-hot) 12%, transparent)',
+                    color: 'var(--accent-hot)',
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {level}
+                </span>
+              )}
             </li>
           ))}
         </ul>
