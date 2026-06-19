@@ -35,6 +35,7 @@ const EXPERIENCES = [
     title:    'Auxiliar de Mercadotecnia',
     current:  false,
     color:    '#a78bfa',
+    durationOverride: 12,  // mostrar 1 año
     skills:   ['Contenido', 'Atención al cliente', 'Cámara', 'Guiones'],
     skillIcons: [LayoutGrid, Users, Camera, Megaphone],
     tasks: [
@@ -93,11 +94,11 @@ function formatDuration(months) {
 /* ─────────────────────────────────────────
    Experience Card (unified desktop+mobile)
 ───────────────────────────────────────── */
-function ExperienceCard({ company, logo, location, date, title, current, color, skills, skillIcons, tasks, index }) {
+function ExperienceCard({ company, logo, location, date, title, current, color, skills, skillIcons, tasks, index, durationOverride }) {
   const cardRef    = useRef(null);
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(index === 0);
-  const months     = getDurationMonths(date);
+  const months     = durationOverride ?? getDurationMonths(date);
   const duration   = formatDuration(months);
 
   useEffect(() => {

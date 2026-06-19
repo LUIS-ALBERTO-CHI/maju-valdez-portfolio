@@ -6,13 +6,7 @@ const BRANDS = [
   { src: '/logos/nucan.png', alt: 'Logo Nucan' },
   { src: '/logos/nupec.png', alt: 'Logo Nupec' },
   { src: '/logos/kubota.png', alt: 'Logo Kubota' },
-  { src: '/logos/chinoin.png', alt: 'Logo Chinoin' },
   { src: '/logos/virbac.png', alt: 'Logo Virbac' },
-  { src: '/logos/lapisa.png', alt: 'Logo Lapisa' },
-  { src: '/logos/nex.png', alt: 'Logo Nex' },
-  { src: '/logos/bio.png', alt: 'Logo Bio' },
-  { src: '/logos/dermo.png', alt: 'Logo Dermo' },
-  { src: '/logos/holland.png', alt: 'Logo Holland' },
 ];
 
 export default function BrandsStrip() {
