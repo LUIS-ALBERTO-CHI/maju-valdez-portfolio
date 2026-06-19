@@ -1,7 +1,7 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Separator } from '@/components/ui/separator';
 import { Video, BarChart2, PenTool, Palette } from 'lucide-react';
-import { SiWordpress, SiMeta } from 'react-icons/si';
+import { SiWordpress, SiMeta, SiCanva } from 'react-icons/si';
 
 const SOFTWARE = [
   { Icon: SiWordpress, label: 'WordPress',   level: 'Nivel básico' },
@@ -10,6 +10,7 @@ const SOFTWARE = [
   { Icon: PenTool,     label: 'Illustrator', level: 'Nivel básico' },
   { Icon: SiMeta,      label: 'Meta Ads',    level: 'Nivel básico' },
   { Icon: BarChart2,   label: 'Analytics',   level: 'Nivel básico' },
+  { Icon: SiCanva,     label: 'Canva',       level: 'Nivel intermedio' },
 ];
 
 export default function SoftwareStrip() {
