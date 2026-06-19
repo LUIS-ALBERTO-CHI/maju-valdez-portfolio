@@ -486,24 +486,71 @@ section + section {
   margin-top: 1px;
 }
 
-/* ── Mobile ── */
+/* ── Mobile — línea vertical a la izquierda ── */
 @media (max-width: 640px) {
-  .exp-simple-row {
-    grid-template-columns: 0px 24px 1fr;
-    padding: 20px 0;
+  .exp-simple-timeline {
+    padding-left: 28px;
+    position: relative;
   }
-  .exp-simple-left {
+
+  /* Línea vertical izquierda para toda la sección */
+  .exp-simple-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0; bottom: 0;
+    width: 1px;
+    border-left: 2px dashed var(--border-color);
+  }
+
+  .exp-simple-row {
+    display: block;        /* abandona el grid de 3 col */
+    padding: 0 0 28px 0;
+    position: relative;
+  }
+
+  /* Oculta la línea dashed del ::before que viene del grid */
+  .exp-simple-row::before {
     display: none;
   }
-  .exp-simple-right {
-    padding-left: 16px;
+
+  /* Nodo pegado a la línea izquierda */
+  .exp-simple-center {
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    padding: 0;
   }
-  .exp-simple-right::before {
-    content: attr(data-company) ' · ' attr(data-date);
+
+  /* Oculta columna izquierda — info va inline arriba del título */
+  .exp-simple-left {
     display: block;
+    text-align: left;
+    padding: 0 0 4px 0;
+    margin-bottom: 2px;
+  }
+
+  .exp-simple-company {
+    font-size: 0.9rem;
+  }
+
+  .exp-simple-date,
+  .exp-simple-location {
     font-size: 0.75rem;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
+  }
+
+  .exp-simple-right {
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  .exp-simple-title {
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+  }
+
+  .exp-simple-item {
+    font-size: 0.8rem;
   }
 }
 
