@@ -101,26 +101,49 @@ export default function App() {
     if (!location.hash) window.scrollTo(0, 0);
   }, []);
 
-  // Active section highlighter
+  // Active section highlighter — IntersectionObserver (works with lazy-loaded sections)
   useEffect(() => {
-    const sectionEls = SECTIONS.map(id => document.getElementById(id)).filter(Boolean);
+    const observed = new Set();
 
-    const handleScroll = () => {
-      const scrollY = window.pageYOffset;
-      let current = 'inicio';
-      sectionEls.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        if (scrollY >= top - 150 && scrollY < top + height - 150) {
-          current = section.id;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        // Section is "active" when it occupies the middle band of the viewport
+        rootMargin: '-40% 0px -55% 0px',
+        threshold: 0,
+      }
+    );
+
+    const observeSections = () => {
+      SECTIONS.forEach((id) => {
+        if (!observed.has(id)) {
+          const el = document.getElementById(id);
+          if (el) {
+            observer.observe(el);
+            observed.add(id);
+          }
         }
       });
-      setActiveSection(current);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Run immediately, then retry as lazy sections mount
+    observeSections();
+    const t1 = setTimeout(observeSections, 500);
+    const t2 = setTimeout(observeSections, 1200);
+    const t3 = setTimeout(observeSections, 2500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, []);
 
   // Close modals on Escape
