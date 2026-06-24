@@ -9,6 +9,7 @@ import BrandsStrip from './components/BrandsStrip'; // just below hero → eager
 import WhatsAppButton from './components/WhatsAppButton'; // floating, always visible
 import CustomCursor from './components/CustomCursor';
 import ScrollProgress from './components/ScrollProgress';
+import SplashScreen from './components/SplashScreen';
 
 // Below-fold sections — lazy loaded only when needed
 const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
@@ -33,6 +34,9 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [videoSrc, setVideoSrc] = useState(null);
   const [imageSrc, setImageSrc] = useState({ src: null, alt: null });
+  const [splashDone, setSplashDone] = useState(
+    () => !!sessionStorage.getItem('splashShown')
+  );
 
   /**
    * Dark mode toggle with View Transitions ripple.
@@ -160,6 +164,9 @@ export default function App() {
 
   return (
     <TooltipProvider>
+      {/* Splash screen — shown once per session */}
+      {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
+
       {/* Custom cursor — works on all pages */}
       <CustomCursor />
 

@@ -2958,3 +2958,137 @@ section + section {
   transition: width 80ms linear;
   border-radius: 0 2px 2px 0;
 }
+
+
+/* ==============================
+   Typewriter Cursor
+   ============================== */
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent-hot);
+  font-weight: 400;
+  animation: tw-blink 0.7s step-end infinite;
+}
+.typewriter-cursor--pause {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes tw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+
+/* ==============================
+   Splash Screen
+   ============================== */
+
+.splash-root {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light);
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+}
+.dark .splash-root {
+  background: #0f0f11;
+}
+
+/* Decorative blobs */
+.splash-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(70px);
+}
+.splash-blob--1 {
+  width: 380px; height: 380px;
+  top: -80px; left: -80px;
+  background: color-mix(in srgb, var(--accent-hot) 20%, transparent);
+  animation: splash-float 4s ease-in-out infinite alternate;
+}
+.splash-blob--2 {
+  width: 300px; height: 300px;
+  bottom: -60px; right: -60px;
+  background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
+  animation: splash-float 5s ease-in-out infinite alternate-reverse;
+}
+@keyframes splash-float {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(20px, 20px) scale(1.05); }
+}
+
+/* Logo + tagline container */
+.splash-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Letter animation */
+.splash-logo-wrap {
+  display: flex;
+  gap: 4px;
+}
+.splash-letter {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(4rem, 14vw, 7rem);
+  font-weight: 800;
+  color: var(--accent-hot);
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: splash-letter-in 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes splash-letter-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.splash-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: splash-fade-in 400ms ease 600ms forwards;
+}
+@keyframes splash-fade-in {
+  to { opacity: 1; }
+}
+
+/* Loading bar */
+.splash-bar-wrap {
+  width: 120px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+  margin-top: 8px;
+  opacity: 0;
+  animation: splash-fade-in 400ms ease 700ms forwards;
+}
+.splash-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-hot), var(--accent-soft));
+  width: 0%;
+  animation: splash-progress 2s cubic-bezier(0.4, 0, 0.2, 1) 700ms forwards;
+}
+@keyframes splash-progress {
+  to { width: 100%; }
+}
+
+
+
