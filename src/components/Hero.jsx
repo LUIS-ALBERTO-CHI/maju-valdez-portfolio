@@ -1,18 +1,9 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { useTypewriter } from '../hooks/useTypewriter';
 import { Button } from '@/components/ui/button';
 import { Star, Download, Briefcase } from 'lucide-react';
 
-const TITLES = [
-  'Community Manager',
-  'Content Creator',
-  'Social Media Manager',
-  'Estratega de Contenido',
-];
-
 export default function Hero() {
   const [introRef, introVisible] = useIntersectionObserver({ threshold: 0.1 });
-  const { text: titleText, isTyping } = useTypewriter(TITLES);
 
   const handlePortfolioClick = (e) => {
     e.preventDefault();
@@ -61,7 +52,7 @@ export default function Hero() {
                 Soy <span style={{ color: 'var(--accent-hot)' }}>Maju</span>,
               </h1>
               <h2 className="text-4xl font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)' }}>
-                {titleText}<span className={`typewriter-cursor ${isTyping ? '' : 'typewriter-cursor--pause'}`}>|</span>
+                Community Manager<span className="typewriter-cursor">|</span>
               </h2>
             </div>
 
@@ -124,7 +115,7 @@ export default function Hero() {
               Soy <span style={{ color: 'var(--accent-hot)' }}>Maju</span>,
             </h1>
             <h2 className="font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)', fontSize: 'clamp(1.3rem, 6vw, 2rem)' }}>
-              {titleText}<span className={`typewriter-cursor ${isTyping ? '' : 'typewriter-cursor--pause'}`}>|</span>
+              Community Manager<span className="typewriter-cursor">|</span>
             </h2>
           </div>
 
