@@ -85,11 +85,25 @@
 }
 
 /* ==============================
+   Base Layout
+   ============================== */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ==============================
    Global Dark/Light Transition
    ============================== */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
+
   box-sizing: border-box;
   /* Smooth color transitions when theme toggles */
   transition:

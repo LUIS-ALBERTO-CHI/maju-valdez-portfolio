@@ -4,6 +4,8 @@ export default function CustomCursor() {
   const dotRef  = useRef(null);
   const ringRef = useRef(null);
   const [active, setActive] = useState(false);
+  // Don't render on touch/mobile devices at all
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
 
   useEffect(() => {
     // No cursor en dispositivos táctiles
@@ -72,6 +74,8 @@ export default function CustomCursor() {
       document.removeEventListener('mouseenter', onEnter);
     };
   }, []);
+
+  if (isTouch) return null;
 
   return (
     <>
