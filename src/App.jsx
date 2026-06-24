@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';        // above-fold → eager
 import BrandsStrip from './components/BrandsStrip'; // just below hero → eager
 import WhatsAppButton from './components/WhatsAppButton'; // floating, always visible
+import CustomCursor from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 
 // Below-fold sections — lazy loaded only when needed
 const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
@@ -135,6 +137,9 @@ export default function App() {
 
   return (
     <TooltipProvider>
+      {/* Custom cursor — works on all pages */}
+      <CustomCursor />
+
       <Routes>
 
         {/* ─── Dedicated testimonial form page ─── */}
@@ -147,6 +152,7 @@ export default function App() {
         {/* ─── Main portfolio ─── */}
         <Route path="*" element={
           <div className={darkMode ? 'dark' : ''}>
+            <ScrollProgress />
             <BackgroundLayer />
 
             <Navbar
