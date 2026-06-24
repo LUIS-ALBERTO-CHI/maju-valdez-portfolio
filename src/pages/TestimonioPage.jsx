@@ -75,16 +75,23 @@ export default function TestimonioPage() {
     if (!form.nombre.trim() || !form.texto.trim()) return;
     setStatus('loading');
     try {
-      await addDoc(collection(db, 'testimonios'), {
-        nombre:    form.nombre.trim(),
-        cargo:     form.cargo.trim(),
-        texto:     form.texto.trim(),
-        estrellas: form.estrellas,
-        createdAt: serverTimestamp(),
-      });
+      console.log('[Firestore] Intentando escribir...', { db, collection: 'testimonios' });
+      const docRef = await Promise.race([
+        addDoc(collection(db, 'testimonios'), {
+          nombre:    form.nombre.trim(),
+          cargo:     form.cargo.trim(),
+          texto:     form.texto.trim(),
+          estrellas: form.estrellas,
+          createdAt: serverTimestamp(),
+        }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('TIMEOUT: Firestore tardó más de 10 segundos')), 10000)
+        ),
+      ]);
+      console.log('[Firestore] ✅ Éxito, doc ID:', docRef.id);
       setStatus('success');
     } catch (err) {
-      console.error(err);
+      console.error('[Firestore] ❌ Error:', err.code, err.message, err);
       setStatus('error');
     }
   };
