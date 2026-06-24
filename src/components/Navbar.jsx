@@ -2,14 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import {
   Home, Briefcase, GraduationCap,
   Image, Share2, PlayCircle,
-  Layers, ChevronDown, Sun, Moon,
+  Layers, ChevronDown, Sun, Moon, MessageSquare,
 } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const NAV_LINKS = [
-  { href: 'inicio',      label: 'Inicio',      Icon: Home },
-  { href: 'experiencia', label: 'Experiencia', Icon: Briefcase },
-  { href: 'educacion',   label: 'Educación',   Icon: GraduationCap },
+  { href: 'inicio',        label: 'Inicio',        Icon: Home },
+  { href: 'experiencia',   label: 'Experiencia',   Icon: Briefcase },
+  { href: 'educacion',     label: 'Educación',     Icon: GraduationCap },
+  { href: 'testimonios',   label: 'Testimonios',   Icon: MessageSquare },
 ];
 
 const PORTFOLIO_LINKS = [

@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { flushSync } from 'react-dom';
+import { Routes, Route } from 'react-router-dom';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import BackgroundLayer from './components/BackgroundLayer';
 import Navbar from './components/Navbar';
@@ -12,13 +13,15 @@ const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
 const EducationSection  = lazy(() => import('./components/EducationSection'));
 const ProyectosSection  = lazy(() => import('./components/ProyectosSection'));
 const CuentasSection    = lazy(() => import('./components/CuentasSection'));
-const VideosSection     = lazy(() => import('./components/VideosSection'));
-const SoftwareStrip     = lazy(() => import('./components/SoftwareStrip'));
-const Footer            = lazy(() => import('./components/Footer'));
+const VideosSection        = lazy(() => import('./components/VideosSection'));
+const TestimoniosSection   = lazy(() => import('./components/TestimoniosSection'));
+const SoftwareStrip        = lazy(() => import('./components/SoftwareStrip'));
+const Footer               = lazy(() => import('./components/Footer'));
 const VideoModal        = lazy(() => import('./components/VideoModal'));
 const ImageModal        = lazy(() => import('./components/ImageModal'));
+const TestimonioPage    = lazy(() => import('./pages/TestimonioPage'));
 
-const SECTIONS = ['inicio', 'experiencia', 'educacion', 'proyectos', 'cuentas', 'videos'];
+const SECTIONS = ['inicio', 'experiencia', 'educacion', 'proyectos', 'cuentas', 'videos', 'testimonios'];
 
 // Minimal fallback — invisible, sections animate in via IntersectionObserver anyway
 const Blank = () => <div aria-hidden="true" />;
@@ -132,60 +135,77 @@ export default function App() {
 
   return (
     <TooltipProvider>
-    <div className={darkMode ? 'dark' : ''}>
-      <BackgroundLayer />
+      <Routes>
 
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={handleDarkModeToggle}
-        activeSection={activeSection}
-      />
+        {/* ─── Dedicated testimonial form page ─── */}
+        <Route path="/testimonio" element={
+          <Suspense fallback={<Blank />}>
+            <TestimonioPage />
+          </Suspense>
+        } />
 
-      {/* Above-fold: eager */}
-      <Hero />
-      <BrandsStrip />
+        {/* ─── Main portfolio ─── */}
+        <Route path="*" element={
+          <div className={darkMode ? 'dark' : ''}>
+            <BackgroundLayer />
 
-      {/* Below-fold: lazy — load only when React renders them */}
-      <Suspense fallback={<Blank />}>
-        <ExperienceSection />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <EducationSection />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <CuentasSection />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <SoftwareStrip />
-      </Suspense>
-      <Suspense fallback={<Blank />}>
-        <Footer />
-      </Suspense>
+            <Navbar
+              darkMode={darkMode}
+              setDarkMode={handleDarkModeToggle}
+              activeSection={activeSection}
+            />
 
-      {/* Modals */}
-      <Suspense fallback={null}>
-        <VideoModal
-          src={videoSrc}
-          onClose={() => setVideoSrc(null)}
-        />
-      </Suspense>
-      <Suspense fallback={null}>
-        <ImageModal
-          src={imageSrc.src}
-          alt={imageSrc.alt}
-          onClose={() => setImageSrc({ src: null, alt: null })}
-        />
-      </Suspense>
+            {/* Above-fold: eager */}
+            <Hero />
+            <BrandsStrip />
 
-      {/* WhatsApp floating button — always visible */}
-      <WhatsAppButton />
-    </div>
+            {/* Below-fold: lazy — load only when React renders them */}
+            <Suspense fallback={<Blank />}>
+              <ExperienceSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <EducationSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <CuentasSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <TestimoniosSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <SoftwareStrip />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <Footer />
+            </Suspense>
+
+            {/* Modals */}
+            <Suspense fallback={null}>
+              <VideoModal
+                src={videoSrc}
+                onClose={() => setVideoSrc(null)}
+              />
+            </Suspense>
+            <Suspense fallback={null}>
+              <ImageModal
+                src={imageSrc.src}
+                alt={imageSrc.alt}
+                onClose={() => setImageSrc({ src: null, alt: null })}
+              />
+            </Suspense>
+
+            {/* WhatsApp floating button — always visible */}
+            <WhatsAppButton />
+          </div>
+        } />
+
+      </Routes>
     </TooltipProvider>
   );
 }

@@ -25,3 +25,8 @@ dist-ssr
 
 # Videos pesados — se sirven desde hosting externo, no se suben a GitHub
 public/videos/
+
+# Environment variables — Firebase credentials (never commit!)
+.env
+.env.local
+.env.production
