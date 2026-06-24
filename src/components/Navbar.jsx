@@ -179,7 +179,8 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '80px 32px 40px',
+          padding: '100px 32px 40px',
+          overflowY: 'auto',
         }}
       >
         {/* Decorative blobs inside menu */}
@@ -191,55 +192,79 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
           {ALL_LINKS.map(({ href, label, Icon }, i) => {
             const isPortfolio = ['proyectos', 'cuentas', 'videos'].includes(href);
             const isActive = activeSection === href;
+            const showPortfolioLabel = i === NAV_LINKS.length; // before first portfolio item
+
             return (
-              <a
-                key={href}
-                href={`#${href}`}
-                onClick={(e) => handleNavClick(e, href)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '18px',
-                  padding: '14px 20px',
-                  borderRadius: '18px',
-                  marginBottom: '8px',
-                  textDecoration: 'none',
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: 'clamp(1.05rem, 4.5vw, 1.25rem)',
-                  fontWeight: isActive ? 700 : 500,
-                  color: isActive ? 'var(--accent-hot)' : 'var(--text-dark)',
-                  background: isActive ? 'rgba(240,108,136,0.10)' : 'transparent',
-                  border: `1px solid ${isActive ? 'rgba(240,108,136,0.25)' : 'transparent'}`,
-                  transition: 'all 200ms ease',
-                  transform: mobileOpen ? 'translateY(0)' : 'translateY(16px)',
-                  opacity: mobileOpen ? 1 : 0,
-                  transitionDelay: mobileOpen ? `${i * 45}ms` : '0ms',
-                  paddingLeft: isPortfolio ? '44px' : '20px',
-                }}
-              >
-                <span
+              <div key={href}>
+                {/* Subtle "Portafolio" section divider */}
+                {showPortfolioLabel && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    margin: '8px 4px 4px',
+                    opacity: mobileOpen ? 1 : 0,
+                    transition: `opacity 300ms ease ${i * 45}ms`,
+                  }}>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+                    <span style={{
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'var(--text-secondary)',
+                    }}>Portafolio</span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+                  </div>
+                )}
+                <a
+                  href={`#${href}`}
+                  onClick={(e) => handleNavClick(e, href)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '12px',
-                    background: isActive ? 'rgba(240,108,136,0.15)' : 'rgba(0,0,0,0.04)',
-                    color: isActive ? 'var(--accent-hot)' : 'var(--text-secondary)',
-                    flexShrink: 0,
+                    gap: '18px',
+                    padding: '14px 20px',
+                    borderRadius: '18px',
+                    marginBottom: '6px',
+                    textDecoration: 'none',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: 'clamp(1.05rem, 4.5vw, 1.25rem)',
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? 'var(--accent-hot)' : 'var(--text-dark)',
+                    background: isActive ? 'rgba(240,108,136,0.10)' : 'transparent',
+                    border: `1px solid ${isActive ? 'rgba(240,108,136,0.25)' : 'transparent'}`,
+                    transition: 'all 200ms ease',
+                    transform: mobileOpen ? 'translateY(0)' : 'translateY(16px)',
+                    opacity: mobileOpen ? 1 : 0,
+                    transitionDelay: mobileOpen ? `${i * 45}ms` : '0ms',
                   }}
                 >
-                  <Icon size={18} strokeWidth={2} />
-                </span>
-                {label}
-                {isActive && (
-                  <span style={{ marginLeft: 'auto', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-hot)', flexShrink: 0 }} />
-                )}
-              </a>
+                  <span
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '12px',
+                      background: isActive ? 'rgba(240,108,136,0.15)' : 'rgba(0,0,0,0.04)',
+                      color: isActive ? 'var(--accent-hot)' : 'var(--text-secondary)',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Icon size={18} strokeWidth={2} />
+                  </span>
+                  {label}
+                  {isActive && (
+                    <span style={{ marginLeft: 'auto', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-hot)', flexShrink: 0 }} />
+                  )}
+                </a>
+              </div>
             );
           })}
         </nav>
+
 
         {/* Divider */}
         <div style={{ width: '100%', maxWidth: '340px', height: '1px', background: 'var(--border-color)', margin: '12px 0 20px' }} />
