@@ -12,9 +12,10 @@ import ScrollProgress from './components/ScrollProgress';
 import SplashScreen from './components/SplashScreen';
 
 // Below-fold sections — lazy loaded only when needed
-const ExperienceSection = lazy(() => import('./components/ExperienceSection'));
-const EducationSection  = lazy(() => import('./components/EducationSection'));
-const ProyectosSection  = lazy(() => import('./components/ProyectosSection'));
+const ExperienceSection       = lazy(() => import('./components/ExperienceSection'));
+const EducationSection        = lazy(() => import('./components/EducationSection'));
+const CertificationsSection   = lazy(() => import('./components/CertificationsSection'));
+const ProyectosSection        = lazy(() => import('./components/ProyectosSection'));
 const CuentasSection    = lazy(() => import('./components/CuentasSection'));
 const VideosSection        = lazy(() => import('./components/VideosSection'));
 const TestimoniosSection   = lazy(() => import('./components/TestimoniosSection'));
@@ -24,7 +25,7 @@ const VideoModal        = lazy(() => import('./components/VideoModal'));
 const ImageModal        = lazy(() => import('./components/ImageModal'));
 const TestimonioPage    = lazy(() => import('./pages/TestimonioPage'));
 
-const SECTIONS = ['inicio', 'experiencia', 'educacion', 'proyectos', 'cuentas', 'videos', 'testimonios'];
+const SECTIONS = ['inicio', 'experiencia', 'educacion', 'certificaciones', 'proyectos', 'cuentas', 'videos', 'testimonios'];
 
 // Minimal fallback — invisible, sections animate in via IntersectionObserver anyway
 const Blank = () => <div aria-hidden="true" />;
@@ -201,6 +202,9 @@ export default function App() {
             </Suspense>
             <Suspense fallback={<Blank />}>
               <EducationSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <CertificationsSection />
             </Suspense>
             <Suspense fallback={<Blank />}>
               <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
