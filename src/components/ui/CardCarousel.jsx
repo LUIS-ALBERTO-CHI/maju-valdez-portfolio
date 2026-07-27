@@ -54,7 +54,8 @@ export default function CardCarousel({
     e.stopPropagation();
     // Clicking the already-active card opens the fullscreen modal
     if (index === activeIndex && onImageClick) {
-      onImageClick(images[index].src, images[index].title);
+      const { src, alt, title } = images[index];
+      onImageClick(src, alt ?? title);
       return;
     }
     setActiveIndex(index);
@@ -107,7 +108,7 @@ export default function CardCarousel({
                 >
                   <img
                     src={item.src}
-                    alt={item.title}
+                    alt={item.alt ?? item.title}
                     loading="lazy"
                     draggable="false"
                     referrerPolicy="no-referrer"

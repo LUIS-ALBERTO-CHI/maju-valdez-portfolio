@@ -54,6 +54,13 @@ export default function Hero() {
               <h2 className="text-4xl font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)' }}>
                 Community Manager<span className="typewriter-cursor">|</span>
               </h2>
+              {/* Nombre completo en texto visible: es como la buscan en Google */}
+              <p
+                className="mt-3 mb-0 text-sm font-medium uppercase tracking-[0.16em]"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Maria Julia Valdez Navarro
+              </p>
             </div>
 
             <div className="profile-image-container relative mt-4" style={{ zIndex: 3 }}>
@@ -62,7 +69,7 @@ export default function Hero() {
               </div>
               <img
                 src="/files/foto.png"
-                alt="Foto de Maju"
+                alt="Maju Valdez (Maria Julia Valdez Navarro), Community Manager en Mérida, Yucatán"
                 className="profile-image max-w-[340px] block relative"
                 style={{ filter: 'drop-shadow(0 0 15px var(--accent-soft))', zIndex: 2 }}
               />
@@ -117,6 +124,13 @@ export default function Hero() {
             <h2 className="font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)', fontSize: 'clamp(1.3rem, 6vw, 2rem)' }}>
               Community Manager<span className="typewriter-cursor">|</span>
             </h2>
+            {/* Nombre completo en texto visible: es como la buscan en Google */}
+            <p
+              className="mt-2.5 mb-0 text-xs font-medium uppercase tracking-[0.16em]"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Maria Julia Valdez Navarro
+            </p>
           </div>
 
           {/* Photo – circular with white ring + pink glow */}
@@ -151,7 +165,7 @@ export default function Hero() {
             >
               <img
                 src="/files/foto.png"
-                alt="Foto de Maju"
+                alt="Maju Valdez (Maria Julia Valdez Navarro), Community Manager en Mérida, Yucatán"
                 style={{
                   width: '110%',
                   height: '110%',
