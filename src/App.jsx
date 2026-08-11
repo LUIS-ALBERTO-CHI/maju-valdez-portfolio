@@ -18,14 +18,14 @@ const CertificationsSection   = lazy(() => import('./components/CertificationsSe
 const ProyectosSection        = lazy(() => import('./components/ProyectosSection'));
 const CuentasSection    = lazy(() => import('./components/CuentasSection'));
 const VideosSection        = lazy(() => import('./components/VideosSection'));
-const TestimoniosSection   = lazy(() => import('./components/TestimoniosSection'));
+const RecomendacionesSection = lazy(() => import('./components/RecomendacionesSection'));
 const SoftwareStrip        = lazy(() => import('./components/SoftwareStrip'));
 const Footer               = lazy(() => import('./components/Footer'));
 const VideoModal        = lazy(() => import('./components/VideoModal'));
 const ImageModal        = lazy(() => import('./components/ImageModal'));
 const TestimonioPage    = lazy(() => import('./pages/TestimonioPage'));
 
-const SECTIONS = ['inicio', 'experiencia', 'educacion', 'certificaciones', 'proyectos', 'cuentas', 'videos', 'testimonios'];
+const SECTIONS = ['inicio', 'experiencia', 'educacion', 'certificaciones', 'proyectos', 'cuentas', 'videos', 'recomendaciones'];
 
 // Minimal fallback — invisible, sections animate in via IntersectionObserver anyway
 const Blank = () => <div aria-hidden="true" />;
@@ -216,7 +216,7 @@ export default function App() {
               <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
             </Suspense>
             <Suspense fallback={<Blank />}>
-              <TestimoniosSection />
+              <RecomendacionesSection />
             </Suspense>
             <Suspense fallback={<Blank />}>
               <SoftwareStrip />

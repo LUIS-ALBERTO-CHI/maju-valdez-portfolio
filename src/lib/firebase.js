@@ -17,5 +17,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-/** Firestore database instance — used in TestimoniosSection */
+/** Firestore database instance — único consumidor: la página /testimonio */
 export const db = getFirestore(app);

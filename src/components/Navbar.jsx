@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { href: 'inicio',        label: 'Inicio',        Icon: Home },
   { href: 'experiencia',   label: 'Experiencia',   Icon: Briefcase },
   { href: 'educacion',     label: 'Educación',     Icon: GraduationCap },
-  { href: 'testimonios',   label: 'Testimonios',   Icon: MessageSquare },
+  { href: 'recomendaciones', label: 'Recomendaciones', Icon: MessageSquare },
 ];
 
 const PORTFOLIO_LINKS = [
