@@ -231,7 +231,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: 'clamp(1.05rem, 4.5vw, 1.25rem)',
                     fontWeight: isActive ? 700 : 500,
-                    color: isActive ? 'var(--accent-hot)' : 'var(--text-dark)',
+                    color: isActive ? 'var(--accent-strong)' : 'var(--text-dark)',
                     background: isActive ? 'rgba(240,108,136,0.10)' : 'transparent',
                     border: `1px solid ${isActive ? 'rgba(240,108,136,0.25)' : 'transparent'}`,
                     transition: 'all 200ms ease',
@@ -249,7 +249,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
                       height: '40px',
                       borderRadius: '12px',
                       background: isActive ? 'rgba(240,108,136,0.15)' : 'rgba(0,0,0,0.04)',
-                      color: isActive ? 'var(--accent-hot)' : 'var(--text-secondary)',
+                      color: isActive ? 'var(--accent-strong)' : 'var(--text-secondary)',
                       flexShrink: 0,
                     }}
                   >

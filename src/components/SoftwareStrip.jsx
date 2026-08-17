@@ -48,7 +48,7 @@ export default function SoftwareStrip() {
                 style={{
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
-                  color: 'var(--accent-hot)',
+                  color: 'var(--accent-strong)',
                 }}
               >
                 <Icon size={28} />
@@ -68,7 +68,7 @@ export default function SoftwareStrip() {
                     padding: '2px 9px',
                     borderRadius: '20px',
                     background: 'color-mix(in srgb, var(--accent-hot) 12%, transparent)',
-                    color: 'var(--accent-hot)',
+                    color: 'var(--accent-strong)',
                     letterSpacing: '0.02em',
                   }}
                 >

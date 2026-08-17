@@ -39,7 +39,7 @@ export default function Footer() {
             >
               Actualmente busco unirme a un equipo innovador donde pueda aportar mi pasión por el
               marketing y la estrategia digital. Si mi perfil encaja con tu empresa,{' '}
-              <span style={{ color: 'var(--accent-hot)', fontWeight: 600 }}>¡me encantaría conversar!</span>
+              <span style={{ color: 'var(--accent-strong)', fontWeight: 600 }}>¡me encantaría conversar!</span>
             </p>
 
             {/* Social links */}

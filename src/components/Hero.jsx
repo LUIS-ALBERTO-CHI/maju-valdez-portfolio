@@ -49,7 +49,7 @@ export default function Hero() {
                 />
               </div>
               <h1 className="text-6xl font-bold m-0" style={{ color: 'var(--text-dark)' }}>
-                Soy <span style={{ color: 'var(--accent-hot)' }}>Maju</span>,
+                Soy <span style={{ color: 'var(--accent-strong)' }}>Maju</span>,
               </h1>
               <h2 className="text-4xl font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)' }}>
                 Community Manager<span className="typewriter-cursor">|</span>
@@ -76,7 +76,7 @@ export default function Hero() {
               <div className="profile-buttons-overlay">
                 <a href="/files/Maria Julia Valdez Navarro CV 2026.pdf" download
                   className="profile-btn px-6 py-3 rounded-full font-semibold text-center min-w-[160px] no-underline text-white"
-                  style={{ background: 'var(--accent-hot)' }}>
+                  style={{ background: 'var(--accent-strong)' }}>
                   Descargar CV
                 </a>
                 <a href="#proyectos" onClick={handlePortfolioClick}
@@ -90,7 +90,7 @@ export default function Hero() {
 
           {/* Right: Experience widget */}
           <div className="text-center">
-            <div className="flex justify-center gap-0.5 mb-2" style={{ color: 'var(--accent-hot)' }}>
+            <div className="flex justify-center gap-0.5 mb-2" style={{ color: 'var(--accent-strong)' }}>
               {[...Array(5)].map((_, i) => <Star key={i} size={22} fill="currentColor" strokeWidth={0} />)}
             </div>
             <p className="text-4xl font-bold m-0" style={{ color: 'var(--text-dark)' }}>1 Año</p>
@@ -119,7 +119,7 @@ export default function Hero() {
           {/* Title */}
           <div>
             <h1 className="font-bold m-0" style={{ color: 'var(--text-dark)', fontSize: 'clamp(2.4rem, 11vw, 3.5rem)' }}>
-              Soy <span style={{ color: 'var(--accent-hot)' }}>Maju</span>,
+              Soy <span style={{ color: 'var(--accent-strong)' }}>Maju</span>,
             </h1>
             <h2 className="font-normal mt-1 mb-0" style={{ color: 'var(--text-dark)', fontSize: 'clamp(1.3rem, 6vw, 2rem)' }}>
               Community Manager<span className="typewriter-cursor">|</span>
@@ -183,7 +183,7 @@ export default function Hero() {
             className="flex items-center justify-center gap-3 px-6 py-3 rounded-2xl"
             style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}
           >
-            <span className="flex gap-0.5" style={{ color: 'var(--accent-hot)' }}>
+            <span className="flex gap-0.5" style={{ color: 'var(--accent-strong)' }}>
               {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" strokeWidth={0} />)}
             </span>
             <span className="font-bold text-xl" style={{ color: 'var(--text-dark)' }}>1 Año</span>
@@ -204,7 +204,7 @@ export default function Hero() {
               asChild
               size="lg"
               className="w-full rounded-full font-semibold gap-2 border-0 hover:opacity-90"
-              style={{ background: 'var(--accent-hot)', color: 'white' }}
+              style={{ background: 'var(--accent-strong)', color: 'var(--on-accent)' }}
             >
               <a href="/files/Maria Julia Valdez Navarro CV 2026.pdf" download>
                 <Download size={18} strokeWidth={2} /> Descargar CV
@@ -215,7 +215,7 @@ export default function Hero() {
               variant="outline"
               size="lg"
               className="w-full rounded-full font-semibold gap-2"
-              style={{ borderColor: 'var(--accent-hot)', color: 'var(--accent-hot)', background: 'transparent' }}
+              style={{ borderColor: 'var(--accent-strong)', color: 'var(--accent-strong)', background: 'transparent' }}
             >
               <a href="#proyectos" onClick={handlePortfolioClick}>
                 <Briefcase size={18} strokeWidth={2} /> Ver Portafolio

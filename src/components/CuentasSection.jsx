@@ -121,7 +121,7 @@ export default function CuentasSection() {
                     alt={`Logo de ${cuenta.name}`}
                     className={cuenta.fit === 'contain' ? 'object-contain p-1' : 'object-cover'}
                   />
-                  <AvatarFallback style={{ background: 'var(--bg-element)', color: 'var(--accent-hot)' }}>
+                  <AvatarFallback style={{ background: 'var(--bg-element)', color: 'var(--accent-strong)' }}>
                     {cuenta.name[0]}
                   </AvatarFallback>
                 </Avatar>

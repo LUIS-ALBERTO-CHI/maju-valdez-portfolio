@@ -8,10 +8,23 @@
    CSS Custom Properties / Tokens
    ============================== */
 :root {
+  /*
+    Dos rosas con papeles distintos:
+    --accent-hot    decorativo. Manchas, degradados, bordes, sombras. Ahí el
+                    contraste no aplica, así que conserva el rosa de marca.
+    --accent-strong funcional. Todo lo que lleva texto o iconos encima, y el
+                    propio texto en color de acento. #f06c88 daba 2.91:1 sobre
+                    blanco (mínimo AA: 4.5); este da 4.94.
+    --on-accent     el color que va ENCIMA de --accent-strong.
+  */
   --accent-hot: #f06c88;
+  --accent-strong: #C93A5E;
+  --on-accent: #FFFFFF;
   --accent-soft: #F4A7B9;
   --text-dark: #73434F;
-  --text-secondary: #B58390;
+  /* antes #B58390: 3.18:1 sobre tarjeta y 2.71 sobre chip. Este pasa AA sobre
+     los tres fondos claros del sitio (4.83 en el peor, que son los chips). */
+  --text-secondary: #925565;
   --bg-element: #FDE8EC;
   --bg-light: #FFF9FA;
   --border-color: #F8D3DA;
@@ -40,6 +53,10 @@
 .dark {
   /* Accent stays the same — brand consistency */
   --accent-hot:  #f472b6;          /* slightly brighter pink in dark for better contrast */
+  /* Sobre fondo oscuro este rosa ya da 6.68:1 como texto, así que sirve tal cual.
+     Lo que fallaba era el texto BLANCO encima (2.65): en oscuro va texto oscuro. */
+  --accent-strong: #f472b6;
+  --on-accent: #1a1720;
   --accent-soft: #f9a8d4;
 
   /* Text hierarchy — warm white, not cold */
@@ -266,11 +283,11 @@ section + section {
   transition: color 220ms cubic-bezier(0.22,1,0.36,1), transform 180ms ease;
 }
 .nav-link:hover {
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   transform: translateY(-2px);
 }
 .nav-link.active {
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   font-weight: 700;
 }
 
@@ -465,7 +482,7 @@ section + section {
   flex-shrink: 0;
 }
 .exp-simple-node--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
 }
 
 /* ── Right column ── */
@@ -500,7 +517,7 @@ section + section {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   opacity: 0.75;
   margin-top: 1px;
 }
@@ -607,7 +624,7 @@ section + section {
   width: 36px; height: 36px;
   border-radius: 10px;
   background: color-mix(in srgb, var(--accent-hot) 12%, transparent);
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 4px;
 }
@@ -620,7 +637,7 @@ section + section {
   line-height: 1.3;
 }
 .edu-old-institution--featured {
-  color: var(--accent-hot);
+  color: var(--accent-strong);
 }
 
 .edu-old-degree {
@@ -635,7 +652,7 @@ section + section {
   padding: 3px 10px;
   border-radius: 20px;
   background: color-mix(in srgb, var(--accent-hot) 12%, transparent);
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   font-size: 0.72rem;
   font-weight: 600;
   width: fit-content;
@@ -668,12 +685,12 @@ section + section {
 }
 .edu-old-page-btn:hover {
   border-color: var(--accent-hot);
-  color: var(--accent-hot);
+  color: var(--accent-strong);
 }
 .edu-old-page-btn--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* Responsive */
@@ -877,13 +894,13 @@ section + section {
 }
 .edu-filter-btn:hover {
   border-color: var(--accent-soft);
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   transform: translateY(-1px);
 }
 .edu-filter-btn--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: white;
+  color: var(--on-accent);
 }
 .edu-filter-btn--active:hover { transform: translateY(-1px); }
 
@@ -1196,9 +1213,9 @@ section + section {
   box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 .proy-nav-btn:hover {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: white;
+  color: var(--on-accent);
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(240,108,136,0.35);
 }
@@ -1270,7 +1287,7 @@ section + section {
   transition: background 220ms ease, transform 220ms ease, width 260ms cubic-bezier(0.22,1,0.36,1);
 }
 .proy-dot--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   width: 28px;
   transform: scale(1.1);
 }
@@ -1304,8 +1321,8 @@ section + section {
   transition: background 220ms ease, color 220ms ease, transform 220ms ease;
 }
 .deck-pager-btn:hover {
-  background: var(--accent-hot);
-  color: #fff;
+  background: var(--accent-strong);
+  color: var(--on-accent);
   transform: scale(1.1);
 }
 .deck-pager-btn:active { transform: scale(0.95); }
@@ -1319,7 +1336,7 @@ section + section {
   transition: background 220ms ease, transform 220ms ease, width 260ms cubic-bezier(0.22,1,0.36,1);
 }
 .deck-pager-dot--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   width: 28px;
   transform: scale(1.1);
 }
@@ -1365,7 +1382,7 @@ section + section {
   width: 100%;
   height: 100%;
   display: block;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   overflow: visible;
   /* Se desvanece en los extremos para que las líneas no se corten en seco */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
@@ -1497,7 +1514,7 @@ section + section {
   cursor: pointer;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   transition: opacity 200ms ease;
 }
 .reco-leer-mas:hover { opacity: 0.75; }
@@ -1568,9 +1585,9 @@ section + section {
   transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
 }
 .reco-nav-btn:hover {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: #fff;
+  color: var(--on-accent);
 }
 .reco-nav-btn--prev { left: -8px; }
 .reco-nav-btn--next { right: -8px; }
@@ -1597,7 +1614,7 @@ section + section {
   background: var(--border-color);
   transition: background 220ms ease, width 260ms cubic-bezier(0.22,1,0.36,1);
 }
-.reco-dot--active { background: var(--accent-hot); width: 28px; }
+.reco-dot--active { background: var(--accent-strong); width: 28px; }
 .reco-dot:hover:not(.reco-dot--active) { background: var(--accent-soft); }
 
 @media (max-width: 700px) {
@@ -1846,7 +1863,7 @@ section + section {
 .vid-play-cta {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   white-space: nowrap;
   opacity: 0;
   transform: translateX(-6px);
@@ -1876,9 +1893,9 @@ section + section {
               box-shadow 220ms ease;
 }
 .vid-nav-btn:hover {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: white;
+  color: var(--on-accent);
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(240,108,136,0.35);
 }
@@ -1904,7 +1921,7 @@ section + section {
   min-width: 40px;
   text-align: right;
 }
-.vid-counter strong { color: var(--accent-hot); }
+.vid-counter strong { color: var(--accent-strong); }
 .vid-active-title {
   font-size: 0.8rem;
   font-weight: 600;
@@ -1932,7 +1949,7 @@ section + section {
   transition: background 220ms ease, width 260ms cubic-bezier(0.22,1,0.36,1), transform 220ms ease;
 }
 .vid-dot--active {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   width: 26px;
   transform: scale(1.1);
 }
@@ -2016,7 +2033,7 @@ section + section {
   transition: transform 160ms ease, background-color 160ms ease;
 }
 .pagination-btn.active { transform: scale(1.15); }
-.pagination-btn.active::before { background-color: var(--accent-hot); transform: scale(1.25); }
+.pagination-btn.active::before { background-color: var(--accent-strong); transform: scale(1.25); }
 .pagination-btn:hover:not(.active)::before { background-color: rgba(0,0,0,0.10); }
 
 @media (min-width: 992px) {
@@ -2031,7 +2048,7 @@ section + section {
     min-width: 44px;
   }
   .pagination-btn::before { display: none; }
-  .pagination-btn.active { background-color: var(--accent-hot); color: white; border-color: var(--accent-hot); transform: scale(1.05); }
+  .pagination-btn.active { background-color: var(--accent-strong); color: var(--on-accent); border-color: var(--accent-hot); transform: scale(1.05); }
   .pagination-btn:hover:not(.active) { background-color: var(--accent-soft); border-color: var(--accent-soft); color: white; transform: translateY(-2px); }
 }
 
@@ -2083,7 +2100,7 @@ section + section {
   transition: background 0.2s, transform 0.2s;
   line-height: 1;
 }
-.close-modal:hover { background: var(--accent-hot); color: white; transform: scale(1.1); }
+.close-modal:hover { background: var(--accent-strong); color: var(--on-accent); transform: scale(1.1); }
 
 /* ==============================
    Image Modal
@@ -2124,7 +2141,7 @@ section + section {
   transition: background 0.2s, transform 0.2s;
   line-height: 1;
 }
-.close-image-modal:hover { background: var(--accent-hot); transform: scale(1.1); }
+.close-image-modal:hover { background: var(--accent-strong); transform: scale(1.1); }
 
 /* ==============================
    Brands strip overlay
@@ -2501,9 +2518,9 @@ section + section {
   -webkit-backdrop-filter: blur(8px);
 }
 .tpage-back-btn:hover {
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   border-color: var(--accent-hot);
-  color: white;
+  color: var(--on-accent);
   transform: translateX(-3px);
 }
 
@@ -2540,7 +2557,7 @@ section + section {
   border-radius: 18px;
   background: color-mix(in srgb, var(--accent-hot) 12%, var(--bg-element));
   border: 1.5px solid color-mix(in srgb, var(--accent-hot) 28%, var(--border-color));
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2591,7 +2608,7 @@ section + section {
 }
 
 .tpage-required {
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   margin-left: 2px;
 }
 
@@ -2619,7 +2636,7 @@ section + section {
 .tpage-star-label {
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   min-width: 90px;
   transition: opacity 200ms ease;
 }
@@ -2660,7 +2677,7 @@ section + section {
 }
 
 .tpage-success-icon {
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   filter: drop-shadow(0 6px 16px color-mix(in srgb, var(--accent-hot) 40%, transparent));
   animation: tpage-check-pop 500ms cubic-bezier(0.22,1,0.36,1) both 200ms;
 }
@@ -2738,7 +2755,7 @@ section + section {
   height: 8px;
   margin: -4px 0 0 -4px;
   border-radius: 50%;
-  background: var(--accent-hot);
+  background: var(--accent-strong);
   pointer-events: none;
   z-index: 99999;
   will-change: transform;
@@ -2780,7 +2797,7 @@ section + section {
   width:  12px;
   height: 12px;
   margin: -6px 0 0 -6px;
-  background: var(--accent-hot);
+  background: var(--accent-strong);
 }
 .cursor-ring--click {
   width:  28px;
@@ -2830,7 +2847,7 @@ section + section {
 .typewriter-cursor {
   display: inline-block;
   margin-left: 2px;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   font-weight: 400;
   animation: tw-blink 0.7s step-end infinite;
 }
@@ -2907,7 +2924,7 @@ section + section {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(4rem, 14vw, 7rem);
   font-weight: 800;
-  color: var(--accent-hot);
+  color: var(--accent-strong);
   line-height: 1;
   opacity: 0;
   transform: translateY(30px);
@@ -3143,4 +3160,84 @@ section + section {
   transform: translateX(2px);
   box-shadow: 0 4px 16px rgba(0,128,251,0.15);
 }
-
+
+/* ==============================
+   Accesibilidad e interacción
+   Añadido tras auditar la UI: foco de teclado, áreas táctiles,
+   cursor y respeto por prefers-reduced-motion.
+   ============================== */
+
+/* ── Foco de teclado visible en todo lo interactivo ──
+   Antes solo había 4 reglas de :focus en toda la hoja para ~100 elementos. */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── Cursor en todo lo pulsable ── */
+a[href],
+button:not(:disabled),
+[role="button"],
+summary,
+label[for] {
+  cursor: pointer;
+}
+
+/* ── Áreas táctiles ──
+   Los controles pequeños amplían su zona de toque con un pseudo-elemento:
+   el objetivo crece sin que cambie ni un píxel de lo que se ve.
+   Mínimo recomendado: 44x44. */
+.deck-pager-btn,
+.edu-old-page-btn,
+.proy-nav-btn,
+.reco-nav-btn,
+.vid-nav-btn,
+#dark-mode-toggle,
+.menu-toggle {
+  position: relative;
+}
+.deck-pager-btn::after,
+.edu-old-page-btn::after,
+#dark-mode-toggle::after,
+.menu-toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+}
+
+/* Los puntos indicadores van en fila apretada: ampliarlos a 44 de ancho se
+   comería el clic del vecino, así que crecen sobre todo en vertical. */
+.deck-pager-dot,
+.reco-dot,
+.proy-dot,
+.vid-dot {
+  position: relative;
+}
+.deck-pager-dot::after,
+.reco-dot::after,
+.proy-dot::after,
+.vid-dot::after {
+  content: '';
+  position: absolute;
+  inset: -18px -3px;
+}
+
+/* ── Movimiento reducido ──
+   La auditoría encontró 55 animaciones corriendo pese a la preferencia del
+   sistema. Esto las neutraliza sin quitar los estados finales: los fade-in
+   siguen revelando su contenido, solo que sin recorrido. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

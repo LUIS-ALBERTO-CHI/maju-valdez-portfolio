@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const DEFAULT_ASSETS = [
@@ -62,6 +62,10 @@ export default function CardCarousel({
   };
 
   return (
+    // framer-motion anima por la Web Animations API, así que no le llega la regla
+    // CSS de prefers-reduced-motion. `reducedMotion="user"` le hace caso a la
+    // preferencia del sistema: mantiene la opacidad y descarta los desplazamientos.
+    <MotionConfig reducedMotion="user">
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -142,5 +146,6 @@ export default function CardCarousel({
         </button>
       </div>
     </div>
+    </MotionConfig>
   );
 }
