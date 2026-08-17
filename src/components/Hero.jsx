@@ -1,6 +1,6 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Button } from '@/components/ui/button';
-import { Star, Download, Briefcase } from 'lucide-react';
+import { Star, Briefcase } from 'lucide-react';
 
 export default function Hero() {
   const [introRef, introVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -74,11 +74,6 @@ export default function Hero() {
                 style={{ filter: 'drop-shadow(0 0 15px var(--accent-soft))', zIndex: 2 }}
               />
               <div className="profile-buttons-overlay">
-                <a href="/files/Maria Julia Valdez Navarro Curriculum 2025.pdf" download
-                  className="profile-btn px-6 py-3 rounded-full font-semibold text-center min-w-[160px] no-underline text-white"
-                  style={{ background: 'var(--accent-hot)' }}>
-                  Descargar CV
-                </a>
                 <a href="#proyectos" onClick={handlePortfolioClick}
                   className="profile-btn px-6 py-3 rounded-full font-semibold text-center min-w-[160px] no-underline"
                   style={{ background: 'transparent', color: 'white', border: '2px solid white' }}>
@@ -200,16 +195,6 @@ export default function Hero() {
 
           {/* Action buttons */}
           <div className="flex flex-col items-center gap-3 w-full" style={{ maxWidth: '280px' }}>
-            <Button
-              asChild
-              size="lg"
-              className="w-full rounded-full font-semibold gap-2 border-0 hover:opacity-90"
-              style={{ background: 'var(--accent-hot)', color: 'white' }}
-            >
-              <a href="/files/Maria Julia Valdez Navarro Curriculum 2025.pdf" download>
-                <Download size={18} strokeWidth={2} /> Descargar CV
-              </a>
-            </Button>
             <Button
               asChild
               variant="outline"
