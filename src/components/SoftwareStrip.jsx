@@ -4,10 +4,10 @@ import { Video, BarChart2, PenTool, Palette } from 'lucide-react';
 import { SiWordpress, SiMeta, SiCanva } from 'react-icons/si';
 
 const SOFTWARE = [
-  { Icon: SiWordpress, label: 'WordPress',   level: '' },
+  { Icon: SiWordpress, label: 'WordPress',   level: 'Nivel básico' },
   { Icon: Video,       label: 'CapCut',      level: '' },
-  { Icon: Palette,     label: 'Photoshop',   level: 'Nivel intermedio' },
-  { Icon: PenTool,     label: 'Illustrator', level: 'Nivel intermedio' },
+  { Icon: Palette,     label: 'Photoshop',   level: 'Nivel básico' },
+  { Icon: PenTool,     label: 'Illustrator', level: 'Nivel básico' },
   { Icon: SiMeta,      label: 'Meta Ads',    level: '' },
   { Icon: BarChart2,   label: 'Analytics',   level: '' },
   { Icon: SiCanva,     label: 'Canva',       level: '' },
