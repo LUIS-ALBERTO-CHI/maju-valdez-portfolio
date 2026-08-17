@@ -23,7 +23,39 @@ const CUENTAS = [
     desc: 'Community Management',
     socials: [
       { type: 'facebook', url: 'https://www.facebook.com/fogysamascotas', label: 'Facebook' },
-      { type: 'instagram', url: 'https://www.instagram.com/fogysadivisionmascota?igsh=MW9ydm9qNTMxMzZ4aA==', label: 'Instagram' },
+      { type: 'instagram', url: 'https://www.instagram.com/fogysadivisionmascota', label: 'Instagram' },
+    ],
+  },
+  {
+    img: '/files/aura.jpg',
+    name: 'AURA Construcciones',
+    handle: '@aura_en_obra',
+    desc: 'Community Management',
+    socials: [
+      { type: 'facebook', url: 'https://www.facebook.com/people/AURA-Construcciones/61588680250848/', label: 'Facebook' },
+      { type: 'instagram', url: 'https://www.instagram.com/aura_en_obra', label: 'Instagram' },
+    ],
+  },
+  {
+    img: '/files/cubica.png',
+    // Logo apaisado: recortarlo al círculo se come parte de la marca
+    fit: 'contain',
+    name: 'Cúbica Construcción',
+    handle: '@cubicaconstruccion',
+    desc: 'Community Management',
+    socials: [
+      { type: 'facebook', url: 'https://www.facebook.com/people/C%C3%BAbica-Construcci%C3%B3n/61576562481822/', label: 'Facebook' },
+      { type: 'instagram', url: 'https://www.instagram.com/cubicaconstruccion', label: 'Instagram' },
+    ],
+  },
+  {
+    img: '/files/godinez.jpg',
+    name: 'Godínez Creativos',
+    handle: '@godinezcreativos_mid',
+    desc: 'Community Management',
+    socials: [
+      { type: 'facebook', url: 'https://www.facebook.com/people/God%C3%ADnez-Creativos/61589995362529/', label: 'Facebook' },
+      { type: 'instagram', url: 'https://www.instagram.com/godinezcreativos_mid', label: 'Instagram' },
     ],
   },
 ];
@@ -75,11 +107,19 @@ export default function CuentasSection() {
             <CardHeader className="pb-3 pt-5 px-5">
               {/* Avatar + Name row */}
               <div className="flex items-center gap-4">
-                <Avatar className="w-16 h-16 ring-2" style={{ '--tw-ring-color': 'var(--border-color)' }}>
+                <Avatar
+                  className="w-16 h-16 ring-2 shrink-0"
+                  style={{
+                    '--tw-ring-color': 'var(--border-color)',
+                    // Con `contain` el logo se ve entero; el blanco evita que una
+                    // marca de trazo oscuro desaparezca en modo oscuro
+                    background: cuenta.fit === 'contain' ? '#fff' : undefined,
+                  }}
+                >
                   <AvatarImage
                     src={cuenta.img}
                     alt={`Logo de ${cuenta.name}`}
-                    className="object-cover"
+                    className={cuenta.fit === 'contain' ? 'object-contain p-1' : 'object-cover'}
                   />
                   <AvatarFallback style={{ background: 'var(--bg-element)', color: 'var(--accent-hot)' }}>
                     {cuenta.name[0]}
