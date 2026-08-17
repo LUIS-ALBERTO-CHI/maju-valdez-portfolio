@@ -352,7 +352,12 @@ section + section {
 
 .profile-buttons-overlay {
   position: absolute;
-  bottom: 10%;
+  /*
+    BrandsStrip monta su curva blanca 72px sobre el hero y lleva z-index 96, muy por
+    encima del z-index 1 del hero: cualquier cosa a menos de esa altura queda tapada
+    por más z-index que se le ponga. Los botones se apoyan por encima de la curva.
+  */
+  bottom: 92px;
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
