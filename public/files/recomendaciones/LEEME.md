@@ -8,9 +8,10 @@ El código ya apunta a estos nombres exactos. Basta con dejar el archivo aquí:
 
 | Persona                      | Archivo                      | Estado          |
 |------------------------------|------------------------------|-----------------|
-| Alejandro Poot               | `alejandro-poot.jpg`         | pendiente       |
-| Jorge Carlos Preciado Cicero | `jorge-carlos-preciado.jpg`  | pendiente       |
-| Luis Alberto Chi Casanova    | `luis-alberto-chi.jpg`       | pendiente       |
+| Rafael Enriquez Martinez     | `rafael.jpg`                 | puesta          |
+| Alejandro Poot               | `alejandro-poot.jpg`         | puesta          |
+| Jorge Carlos Preciado Cicero | `jorge-carlos-preciado.jpg`  | puesta          |
+| Luis Alberto Chi Casanova    | `luis-alberto-chi.jpg`       | puesta          |
 | Karen Quijano                | —                            | usa iniciales   |
 
 El nombre y la extensión tienen que coincidir **exactamente**, en minúsculas y con `.jpg`.

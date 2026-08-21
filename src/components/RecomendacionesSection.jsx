@@ -16,6 +16,16 @@ import { avatarColor, initials } from '../lib/avatar';
  */
 const RECOMENDACIONES = [
   {
+    nombre: 'Rafael Enriquez Martinez',
+    cargo: 'Coordinador Regional Comercial Sureste · Ex Cargill · Ex Nestlé',
+    foto: '/files/recomendaciones/rafael.jpg',
+    relacion: 'Ocupaba un cargo superior, sin supervisión directa',
+    fecha: '20 de agosto de 2026',
+    parrafos: [
+      'María Julia combina pensamiento creativo, visión estratégica y agilidad colaborativa. Destaca por su capacidad para adaptarse a entornos dinámicos, diseñar campañas orientadas al crecimiento de marca y optimizar recursos para alcanzar consistentemente los objetivos del negocio mediante decisiones basadas en datos.',
+    ],
+  },
+  {
     nombre: 'Alejandro Poot',
     cargo: 'Productor Audiovisual · Diseñador Digital',
     foto: '/files/recomendaciones/alejandro-poot.jpg',
@@ -61,10 +71,11 @@ const RECOMENDACIONES = [
 
 /* Posición de cada avatar sobre las ondas, en % del contenedor */
 const AVATAR_SPOTS = [
-  { left: '16%', top: '34%' },
-  { left: '38%', top: '18%' },
-  { left: '62%', top: '46%' },
-  { left: '83%', top: '24%' },
+  { left: '11%', top: '30%' },
+  { left: '30%', top: '16%' },
+  { left: '49%', top: '45%' },
+  { left: '68%', top: '21%' },
+  { left: '87%', top: '37%' },
 ];
 
 /* Umbral a partir del cual la tarjeta se recorta y ofrece "Leer completo" */
