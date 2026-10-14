@@ -93,7 +93,7 @@ export default function Hero() {
             <div className="flex justify-center gap-0.5 mb-2" style={{ color: 'var(--accent-strong)' }}>
               {[...Array(5)].map((_, i) => <Star key={i} size={22} fill="currentColor" strokeWidth={0} />)}
             </div>
-            <p className="text-4xl font-bold m-0" style={{ color: 'var(--text-dark)' }}>1 Año</p>
+            <p className="text-4xl font-bold m-0" style={{ color: 'var(--text-dark)' }}>2 Años</p>
             <p style={{ color: 'var(--text-secondary)' }}>De Experiencia</p>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function Hero() {
             <span className="flex gap-0.5" style={{ color: 'var(--accent-strong)' }}>
               {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" strokeWidth={0} />)}
             </span>
-            <span className="font-bold text-xl" style={{ color: 'var(--text-dark)' }}>1 Año</span>
+            <span className="font-bold text-xl" style={{ color: 'var(--text-dark)' }}>2 Años</span>
             <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>de Experiencia</span>
           </div>
 
