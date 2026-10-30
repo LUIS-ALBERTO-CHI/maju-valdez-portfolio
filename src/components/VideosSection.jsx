@@ -135,7 +135,7 @@ export default function VideosSection({ onVideoClick }) {
 
                     {/* Play button */}
                     <div className="vid-play-ring">
-                      <PiPlayFill size={26} color="white" className="vid-play-icon" />
+                      <PiPlayFill size={34} color="white" className="vid-play-icon" />
                     </div>
 
                     {/* Category chip */}

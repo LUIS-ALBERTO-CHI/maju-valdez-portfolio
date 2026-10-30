@@ -2168,7 +2168,7 @@ section + section {
   box-shadow: 0 0 0 12px rgba(240,108,136,0.18), 0 8px 24px rgba(240,108,136,0.4);
 }
 .vid-play-icon {
-  margin-left: 4px; /* optical center for play triangle */
+  margin-left: 2px; /* centro óptico del triángulo (Phosphor ya trae margen interno) */
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
 }
 
