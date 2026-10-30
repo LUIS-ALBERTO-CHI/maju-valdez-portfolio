@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import BackgroundLayer from '../components/BackgroundLayer';
-import { Star, Send, ArrowLeft, MessageSquarePlus, CheckCircle2, Meh, ThumbsUp, Smile, Award, Sparkles } from 'lucide-react';
+import { PiArrowLeft, PiChatCircleDots, PiCheckCircle, PiMedal, PiPaperPlaneTilt, PiSmiley, PiSmileyMeh, PiSparkle, PiStar, PiStarFill, PiThumbsUp } from 'react-icons/pi';
 
 /* ─────────────────────────────────────────
    Star Rating Input
@@ -30,12 +30,9 @@ function StarInput({ value, onChange }) {
             transform: (hovered >= n || value >= n) ? 'scale(1.25)' : 'scale(1)',
           }}
         >
-          <Star
-            size={36}
-            fill={(hovered >= n || value >= n) ? 'var(--accent-hot)' : 'transparent'}
-            stroke={(hovered >= n || value >= n) ? 'var(--accent-hot)' : 'var(--border-color)'}
-            strokeWidth={1.8}
-          />
+          {(hovered >= n || value >= n)
+            ? <PiStarFill size={36} color="var(--accent-hot)" />
+            : <PiStar size={36} color="var(--border-color)" />}
         </button>
       ))}
     </div>
@@ -44,11 +41,11 @@ function StarInput({ value, onChange }) {
 
 const LABELS = [
   null,
-  { text: 'Regular',    Icon: Meh       },
-  { text: 'Bueno',      Icon: ThumbsUp  },
-  { text: 'Muy bueno',  Icon: Smile     },
-  { text: 'Excelente',  Icon: Award     },
-  { text: '¡Increíble!', Icon: Sparkles  },
+  { text: 'Regular',    Icon: PiSmileyMeh       },
+  { text: 'Bueno',      Icon: PiThumbsUp  },
+  { text: 'Muy bueno',  Icon: PiSmiley     },
+  { text: 'Excelente',  Icon: PiMedal     },
+  { text: '¡Increíble!', Icon: PiSparkle  },
 ];
 
 const INITIAL = { nombre: '', cargo: '', texto: '', estrellas: 5 };
@@ -109,7 +106,7 @@ export default function TestimonioPage() {
           onClick={goBack}
           aria-label="Volver al portafolio"
         >
-          <ArrowLeft size={18} strokeWidth={2.5} />
+          <PiArrowLeft size={18} />
           Volver al portafolio
         </button>
 
@@ -117,7 +114,7 @@ export default function TestimonioPage() {
           /* ─── SUCCESS ─── */
           <div className="tpage-card tpage-success-card">
             <div className="tpage-success-icon">
-              <CheckCircle2 size={56} strokeWidth={1.4} />
+              <PiCheckCircle size={56} />
             </div>
             <h1 className="tpage-success-title">¡Muchas gracias! 🎉</h1>
             <p className="tpage-success-msg">
@@ -126,7 +123,7 @@ export default function TestimonioPage() {
             </p>
             <div className="tpage-success-actions">
               <button className="testi-btn-primary" onClick={goBack}>
-                <ArrowLeft size={16} strokeWidth={2} />
+                <PiArrowLeft size={16} />
                 Ver mi testimonio en el portafolio
               </button>
             </div>
@@ -137,7 +134,7 @@ export default function TestimonioPage() {
             {/* Header */}
             <div className="tpage-header">
               <div className="tpage-header-icon">
-                <MessageSquarePlus size={28} strokeWidth={1.6} />
+                <PiChatCircleDots size={28} />
               </div>
               <div>
                 <h1 className="tpage-title">Deja tu testimonio</h1>
@@ -164,7 +161,7 @@ export default function TestimonioPage() {
                       const { text, Icon } = LABELS[form.estrellas];
                       return (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <Icon size={16} strokeWidth={2} style={{ flexShrink: 0 }} />
+                          <Icon size={16} style={{ flexShrink: 0 }} />
                           {text}
                         </span>
                       );
@@ -245,7 +242,7 @@ export default function TestimonioPage() {
                 {status === 'loading' ? (
                   <span className="testi-spinner" />
                 ) : (
-                  <Send size={18} strokeWidth={2} />
+                  <PiPaperPlaneTilt size={18} />
                 )}
                 {status === 'loading' ? 'Publicando…' : 'Publicar mi testimonio'}
               </button>

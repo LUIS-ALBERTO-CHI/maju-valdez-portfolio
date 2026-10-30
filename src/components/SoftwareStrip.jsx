@@ -1,15 +1,15 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Separator } from '@/components/ui/separator';
-import { Video, BarChart2, PenTool, Palette } from 'lucide-react';
+import { PiChartBar, PiPalette, PiPenNib, PiVideoCamera } from 'react-icons/pi';
 import { SiWordpress, SiMeta, SiCanva } from 'react-icons/si';
 
 const SOFTWARE = [
   { Icon: SiWordpress, label: 'WordPress',   level: 'Nivel básico' },
-  { Icon: Video,       label: 'CapCut',      level: '' },
-  { Icon: Palette,     label: 'Photoshop',   level: 'Nivel básico' },
-  { Icon: PenTool,     label: 'Illustrator', level: 'Nivel básico' },
+  { Icon: PiVideoCamera,       label: 'CapCut',      level: '' },
+  { Icon: PiPalette,     label: 'Photoshop',   level: 'Nivel básico' },
+  { Icon: PiPenNib,     label: 'Illustrator', level: 'Nivel básico' },
   { Icon: SiMeta,      label: 'Meta Ads',    level: '' },
-  { Icon: BarChart2,   label: 'Analytics',   level: '' },
+  { Icon: PiChartBar,   label: 'Analytics',   level: '' },
   { Icon: SiCanva,     label: 'Canva',       level: '' },
 ];
 

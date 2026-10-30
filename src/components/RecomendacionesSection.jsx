@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { PiCaretLeft, PiCaretRight, PiQuotesFill } from 'react-icons/pi';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { avatarColor, initials } from '../lib/avatar';
 import { RECOMENDACIONES } from '../data/recomendaciones';
@@ -59,7 +59,6 @@ function Ondas() {
             href="#reco-wave-path"
             fill="none"
             stroke="currentColor"
-            strokeWidth={layer.width}
             opacity={layer.opacity}
           />
         </g>
@@ -105,7 +104,7 @@ function RecomendacionCard({ r }) {
   return (
     <div className="reco-slide">
       <article className="reco-card">
-        <Quote className="reco-quote-icon" size={30} strokeWidth={1.5} aria-hidden="true" />
+        <PiQuotesFill className="reco-quote-icon" size={30} aria-hidden="true" />
 
         <div className={`reco-card-text ${recortable && !expandida ? 'reco-card-text--recortada' : ''}`}>
           {r.parrafos.map((p, i) => (
@@ -192,7 +191,7 @@ export default function RecomendacionesSection() {
 
       <div className="reco-carousel-root">
         <button className="reco-nav-btn reco-nav-btn--prev" onClick={() => emblaApi?.scrollPrev()} aria-label="Recomendación anterior">
-          <ChevronLeft size={20} strokeWidth={2.5} />
+          <PiCaretLeft size={20} />
         </button>
 
         <div className="reco-viewport" ref={emblaRef}>
@@ -204,7 +203,7 @@ export default function RecomendacionesSection() {
         </div>
 
         <button className="reco-nav-btn reco-nav-btn--next" onClick={() => emblaApi?.scrollNext()} aria-label="Siguiente recomendación">
-          <ChevronRight size={20} strokeWidth={2.5} />
+          <PiCaretRight size={20} />
         </button>
       </div>
 

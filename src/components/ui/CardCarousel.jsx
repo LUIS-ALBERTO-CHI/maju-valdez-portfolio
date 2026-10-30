@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, MotionConfig } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { PiCaretLeft, PiCaretRight } from 'react-icons/pi';
 
 const DEFAULT_ASSETS = [
   { src: '/files/3.png', title: 'Diseño 1' },
@@ -127,7 +127,7 @@ export default function CardCarousel({
 
       <div className="deck-pager">
         <button onClick={toPrev} aria-label="Anterior diseño" className="deck-pager-btn">
-          <ChevronLeft className="w-4 h-4" />
+          <PiCaretLeft className="w-4 h-4" />
         </button>
         <div className="flex justify-center items-center gap-[7px]">
           {images.map((item, i) => (
@@ -142,7 +142,7 @@ export default function CardCarousel({
           ))}
         </div>
         <button onClick={toNext} aria-label="Siguiente diseño" className="deck-pager-btn">
-          <ChevronRight className="w-4 h-4" />
+          <PiCaretRight className="w-4 h-4" />
         </button>
       </div>
     </div>

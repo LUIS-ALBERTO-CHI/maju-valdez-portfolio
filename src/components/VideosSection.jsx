@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { ChevronLeft, ChevronRight, Play, Film } from 'lucide-react';
+import { PiCaretLeft, PiCaretRight, PiFilmStrip, PiPlayFill } from 'react-icons/pi';
 import { r2Video } from '../config/r2';
 
 /* ─────────────────────────────────────────
@@ -43,7 +43,7 @@ function VideoThumbnail({ thumb, title }) {
       />
       {!loaded && (
         <div className="vid-thumb-skeleton">
-          <Film size={28} strokeWidth={1.5} className="vid-thumb-skeleton-icon" />
+          <PiFilmStrip size={28} className="vid-thumb-skeleton-icon" />
         </div>
       )}
     </div>
@@ -107,7 +107,7 @@ export default function VideosSection({ onVideoClick }) {
 
         {/* Prev */}
         <button className="vid-nav-btn vid-nav-btn--prev" onClick={scrollPrev} aria-label="Video anterior">
-          <ChevronLeft size={22} strokeWidth={2.5} />
+          <PiCaretLeft size={22} />
         </button>
 
         {/* Viewport */}
@@ -135,12 +135,12 @@ export default function VideosSection({ onVideoClick }) {
 
                     {/* Play button */}
                     <div className="vid-play-ring">
-                      <Play size={26} fill="white" strokeWidth={0} className="vid-play-icon" />
+                      <PiPlayFill size={26} color="white" className="vid-play-icon" />
                     </div>
 
                     {/* Category chip */}
                     <div className="vid-category-chip">
-                      <Film size={11} strokeWidth={2} />
+                      <PiFilmStrip size={11} />
                       <span>{video.category}</span>
                     </div>
                   </div>
@@ -158,7 +158,7 @@ export default function VideosSection({ onVideoClick }) {
 
         {/* Next */}
         <button className="vid-nav-btn vid-nav-btn--next" onClick={scrollNext} aria-label="Siguiente video">
-          <ChevronRight size={22} strokeWidth={2.5} />
+          <PiCaretRight size={22} />
         </button>
       </div>
 

@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { ExternalLink, BadgeCheck, Calendar, Hash } from 'lucide-react';
+import { PiArrowSquareOut, PiCalendarBlank, PiHash, PiSealCheck } from 'react-icons/pi';
 
 /* ─────────────────────────────────────────
    Data
@@ -63,7 +63,7 @@ function CertCard({ issuer, title, date, credentialId, verifyUrl, delay = 0 }) {
           <MetaLogo size={26} />
         </div>
         <div className="cert-badge">
-          <BadgeCheck size={13} strokeWidth={2.5} />
+          <PiSealCheck size={13} />
           Verificado
         </div>
       </div>
@@ -77,11 +77,11 @@ function CertCard({ issuer, title, date, credentialId, verifyUrl, delay = 0 }) {
       {/* Meta info */}
       <div className="cert-meta">
         <span className="cert-meta-item">
-          <Calendar size={12} strokeWidth={2} />
+          <PiCalendarBlank size={12} />
           Expedición: {date}
         </span>
         <span className="cert-meta-item">
-          <Hash size={12} strokeWidth={2} />
+          <PiHash size={12} />
           ID: {credentialId}
         </span>
       </div>
@@ -95,7 +95,7 @@ function CertCard({ issuer, title, date, credentialId, verifyUrl, delay = 0 }) {
         aria-label={`Ver credencial: ${title}`}
       >
         Ver credencial
-        <ExternalLink size={13} strokeWidth={2} />
+        <PiArrowSquareOut size={13} />
       </a>
     </div>
   );

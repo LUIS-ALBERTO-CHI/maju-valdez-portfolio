@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { GraduationCap, Award, Clapperboard, TrendingUp } from 'lucide-react';
+import { PiFilmSlate, PiGraduationCap, PiMedal, PiTrendUp } from 'react-icons/pi';
 import { FaGoogle } from 'react-icons/fa';
 
 /* ─────────────────────────────────────────
@@ -8,7 +8,7 @@ import { FaGoogle } from 'react-icons/fa';
 ───────────────────────────────────────── */
 const ITEMS = [
   {
-    Icon: GraduationCap,
+    Icon: PiGraduationCap,
     institution: 'Universidad Tecnológica Metropolitana',
     degree: 'Licenciada en Innovación de Negocios y Mercadotecnia',
     tag: 'Licenciatura',
@@ -16,7 +16,7 @@ const ITEMS = [
     featured: false,
   },
   {
-    Icon: Award,
+    Icon: PiMedal,
     institution: 'Doppler',
     degree: 'Curso email automation marketing',
     tag: 'Curso',
@@ -24,7 +24,7 @@ const ITEMS = [
     featured: true,   // borde rosa destacado
   },
   {
-    Icon: Clapperboard,
+    Icon: PiFilmSlate,
     institution: 'Taller Profesional',
     degree: 'Producción Audiovisual',
     tag: 'Certificación',
@@ -40,7 +40,7 @@ const ITEMS = [
     featured: false,
   },
   {
-    Icon: TrendingUp,
+    Icon: PiTrendUp,
     institution: 'Curso Online',
     degree: 'Análisis de la Demanda',
     tag: 'Curso',

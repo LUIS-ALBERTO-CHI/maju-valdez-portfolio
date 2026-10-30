@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { Download, Images } from 'lucide-react';
+import { PiDownloadSimple, PiImages } from 'react-icons/pi';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { RECOMENDACIONES } from '../data/recomendaciones';
 
@@ -136,11 +136,11 @@ export default function Hero({ ready = true }) {
 
           <div className="hero-ctas">
             <a href="#proyectos" onClick={scrollTo('proyectos')} className="hero-btn hero-btn--primary">
-              <Images size={18} strokeWidth={2} aria-hidden="true" />
+              <PiImages size={18} aria-hidden="true" />
               Ver portafolio
             </a>
             <a href={CV_URL} download className="hero-btn hero-btn--secondary">
-              <Download size={18} strokeWidth={2} aria-hidden="true" />
+              <PiDownloadSimple size={18} aria-hidden="true" />
               Descargar CV
             </a>
           </div>

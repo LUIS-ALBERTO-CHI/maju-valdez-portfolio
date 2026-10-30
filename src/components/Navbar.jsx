@@ -1,22 +1,18 @@
 import { Fragment, useState, useEffect, useRef } from 'react';
-import {
-  Home, Briefcase, GraduationCap,
-  Image, Share2, PlayCircle,
-  Layers, ChevronDown, Sun, Moon, MessageSquare,
-} from 'lucide-react';
+import { PiBriefcase, PiCaretDown, PiChatCircleText, PiGraduationCap, PiHouse, PiImage, PiList, PiMoon, PiPlayCircle, PiShareNetwork, PiStack, PiSun, PiX } from 'react-icons/pi';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const NAV_LINKS = [
-  { href: 'inicio',        label: 'Inicio',        Icon: Home },
-  { href: 'experiencia',   label: 'Experiencia',   Icon: Briefcase },
-  { href: 'educacion',     label: 'Educación',     Icon: GraduationCap },
-  { href: 'recomendaciones', label: 'Recomendaciones', Icon: MessageSquare },
+  { href: 'inicio',        label: 'Inicio',        Icon: PiHouse },
+  { href: 'experiencia',   label: 'Experiencia',   Icon: PiBriefcase },
+  { href: 'educacion',     label: 'Educación',     Icon: PiGraduationCap },
+  { href: 'recomendaciones', label: 'Recomendaciones', Icon: PiChatCircleText },
 ];
 
 const PORTFOLIO_LINKS = [
-  { href: 'proyectos', label: 'Diseños',  Icon: Image },
-  { href: 'cuentas',   label: 'Cuentas',  Icon: Share2 },
-  { href: 'videos',    label: 'Videos',   Icon: PlayCircle },
+  { href: 'proyectos', label: 'Diseños',  Icon: PiImage },
+  { href: 'cuentas',   label: 'Cuentas',  Icon: PiShareNetwork },
+  { href: 'videos',    label: 'Videos',   Icon: PiPlayCircle },
 ];
 
 const ALL_LINKS = [...NAV_LINKS, ...PORTFOLIO_LINKS];
@@ -158,7 +154,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
                 className={`nav-link flex items-center gap-2 px-5 py-2.5 rounded-[20px] text-sm font-medium no-underline ${activeSection === href ? 'active' : ''}`}
                 aria-current={activeSection === href ? 'true' : undefined}
               >
-                <Icon size={15} strokeWidth={2} aria-hidden="true" />
+                <Icon size={15} aria-hidden="true" />
                 {label}
               </a>
             </li>
@@ -171,9 +167,9 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
               onClick={(e) => handleNavClick(e, 'proyectos')}
               className={`dropdown-toggle nav-link flex items-center gap-2 px-5 py-2.5 rounded-[20px] text-sm font-medium no-underline ${portfolioActive ? 'active' : ''}`}
             >
-              <Layers size={15} strokeWidth={2} aria-hidden="true" />
+              <PiStack size={15} aria-hidden="true" />
               Portafolio
-              <ChevronDown size={13} strokeWidth={2} className="ml-1 transition-transform duration-300" aria-hidden="true" />
+              <PiCaretDown size={13} className="ml-1 transition-transform duration-300" aria-hidden="true" />
             </a>
             <ul className="dropdown-menu">
               {PORTFOLIO_LINKS.map(({ href, label, Icon }) => (
@@ -185,7 +181,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
                     style={{ borderRadius: 0 }}
                     aria-current={activeSection === href ? 'true' : undefined}
                   >
-                    <Icon size={15} strokeWidth={2} aria-hidden="true" />
+                    <Icon size={15} aria-hidden="true" />
                     {label}
                   </a>
                 </li>
@@ -204,7 +200,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
             style={{ background: 'none', border: 'none', color: 'var(--text-dark)', cursor: 'pointer' }}
             aria-label={themeLabel}
           >
-            {darkMode ? <Sun size={20} strokeWidth={2} aria-hidden="true" /> : <Moon size={20} strokeWidth={2} aria-hidden="true" />}
+            {darkMode ? <PiSun size={20} aria-hidden="true" /> : <PiMoon size={20} aria-hidden="true" />}
           </button>
 
           {/* Hamburguesa, solo móvil */}
@@ -217,8 +213,9 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
             aria-expanded={mobileOpen}
             aria-controls={MENU_ID}
           >
-            <span className="menu-toggle-bars" aria-hidden="true">
-              <span /><span /><span />
+            <span className="menu-toggle-icon" aria-hidden="true">
+              <PiList size={26} className="menu-toggle-open" />
+              <PiX size={26} className="menu-toggle-close" />
             </span>
           </button>
         </div>
@@ -252,7 +249,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
                     aria-current={isActive ? 'true' : undefined}
                   >
                     <span className="menu-link-icon">
-                      <Icon size={18} strokeWidth={2} aria-hidden="true" />
+                      <Icon size={18} aria-hidden="true" />
                     </span>
                     {label}
                     {isActive && <span className="menu-link-dot" aria-hidden="true" />}
