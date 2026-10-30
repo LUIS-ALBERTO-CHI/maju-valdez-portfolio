@@ -88,7 +88,7 @@ export default function VideosSection({ onVideoClick }) {
   return (
     <section
       id="videos"
-      className="relative py-20 px-5 overflow-hidden"
+      className="surface-nacar relative py-20 px-5 overflow-hidden"
       style={{ zIndex: 1 }}
     >
       {/* Decorative blobs */}

@@ -167,7 +167,7 @@ export default function RecomendacionesSection() {
   const scrollTo = useCallback((i) => emblaApi?.scrollTo(i), [emblaApi]);
 
   return (
-    <section id="recomendaciones" className="reco-section" style={{ zIndex: 1 }}>
+    <section id="recomendaciones" className="reco-section surface-oscuro" style={{ zIndex: 1 }}>
       <h2 ref={titleRef} className={`section-title fade-in ${titleVisible ? 'visible' : ''}`}>
         Recomendaciones de <span>LinkedIn</span>
       </h2>

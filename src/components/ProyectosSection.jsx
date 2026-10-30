@@ -87,7 +87,7 @@ export default function ProyectosSection({ onImageClick }) {
   return (
     <section
       id="proyectos"
-      className="relative py-20 px-5 overflow-hidden"
+      className="surface-rosa relative py-20 px-5 overflow-hidden"
       style={{ zIndex: 1 }}
     >
       {/* Decorative blobs */}

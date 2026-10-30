@@ -110,7 +110,7 @@ export default function CertificationsSection() {
   return (
     <section
       id="certificaciones"
-      className="relative py-20 px-5"
+      className="surface-nacar relative py-20 px-5"
       style={{ zIndex: 1 }}
     >
       {/* Decorative blobs */}

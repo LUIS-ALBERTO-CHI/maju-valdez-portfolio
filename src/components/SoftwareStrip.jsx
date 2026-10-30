@@ -18,7 +18,7 @@ export default function SoftwareStrip() {
 
   return (
     <section
-      className="relative py-16 overflow-hidden"
+      className="surface-rosa relative py-16 overflow-hidden"
       style={{ zIndex: 1 }}
     >
       <h2

@@ -60,17 +60,10 @@ const CUENTAS = [
   },
 ];
 
+/* Píldora del sistema (blanca con borde rosado); solo el icono lleva el color de la red */
 const socialStyles = {
-  facebook: {
-    background: '#1877F2',
-    color: 'white',
-    Icon: FaFacebook,
-  },
-  instagram: {
-    background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
-    color: 'white',
-    Icon: FaInstagram,
-  },
+  facebook:  { iconColor: '#1877F2', Icon: FaFacebook },
+  instagram: { iconColor: '#E1306C', Icon: FaInstagram },
 };
 
 export default function CuentasSection() {
@@ -79,7 +72,7 @@ export default function CuentasSection() {
   return (
     <section
       id="cuentas"
-      className="relative py-20 px-5"
+      className="surface-rosa relative py-20 px-5"
       style={{ zIndex: 1 }}
     >
       <h2
@@ -162,11 +155,16 @@ export default function CuentasSection() {
                       key={type}
                       asChild
                       size="sm"
-                      className="rounded-full gap-2 text-sm font-semibold px-4 border-0 hover:opacity-90 hover:-translate-y-0.5 transition-all"
-                      style={{ background: s.background, color: s.color }}
+                      className="rounded-full gap-2 text-sm font-semibold px-4 hover:-translate-y-0.5 transition-all"
+                      style={{
+                        background: 'var(--bg-card)',
+                        color: 'var(--text-dark)',
+                        border: '1px solid var(--border-color)',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                      }}
                     >
                       <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
-                        <s.Icon size={16} />
+                        <s.Icon size={16} color={s.iconColor} aria-hidden="true" />
                         <span>{label}</span>
                       </a>
                     </Button>

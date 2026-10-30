@@ -83,7 +83,7 @@ export default function EducationSection() {
   return (
     <section
       id="educacion"
-      className="relative py-20 px-5"
+      className="surface-rosa relative py-20 px-5"
       style={{ zIndex: 1 }}
     >
       <h2

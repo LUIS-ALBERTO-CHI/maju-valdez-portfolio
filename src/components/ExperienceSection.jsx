@@ -10,7 +10,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experiencia"
-      className="relative py-20 px-5"
+      className="surface-nacar relative py-20 px-5"
       style={{ zIndex: 1 }}
     >
       <h2
