@@ -1,21 +1,28 @@
+import { useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
-import { PiDownloadSimple } from 'react-icons/pi';
-import { LINKEDIN_URL, INSTAGRAM_URL, WHATSAPP_URL } from '../data/contacto';
-
-const CV_URL = '/files/Maria Julia Valdez Navarro CV 2026.pdf';
+import { FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
+import { LINKEDIN_URL, WHATSAPP_URL } from '../data/contacto';
 
 /**
- * Cierre de la página. Es el último momento para convertir, así que repite la
- * jerarquía del hero: LinkedIn como acción principal (PRODUCT.md), WhatsApp
- * y CV como apoyo.
+ * Cierre de la página. Es el último momento para convertir: dos acciones y
+ * nada más. LinkedIn es la principal (PRODUCT.md) y WhatsApp la secundaria.
+ * El CV e Instagram ya están en el hero y en el menú; aquí no se repiten.
+ *
+ * Mientras el cierre está en pantalla, el botón flotante de WhatsApp se
+ * esconde (clase en <body>, ver index.css) para no mostrar dos WhatsApp juntos.
  */
 export default function Footer() {
   const [titleRef, titleVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const [footRef, footVisible] = useIntersectionObserver({ threshold: 0.25 });
   const year = new Date().getFullYear();
 
+  useEffect(() => {
+    document.body.classList.toggle('cierre-visible', footVisible);
+    return () => document.body.classList.remove('cierre-visible');
+  }, [footVisible]);
+
   return (
-    <footer className="relative" style={{ backgroundColor: 'var(--bg-element)', zIndex: 1 }}>
+    <footer ref={footRef} className="site-footer relative" style={{ backgroundColor: 'var(--bg-element)', zIndex: 1 }}>
       <div className="footer-wave" />
 
       <div className="max-w-[1200px] mx-auto px-5 pb-8">
@@ -42,17 +49,6 @@ export default function Footer() {
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hero-btn hero-btn--secondary">
               <FaWhatsapp size={18} aria-hidden="true" />
               Escribir por WhatsApp
-            </a>
-          </div>
-
-          <div className={`footer-links fade-in ${titleVisible ? 'visible' : ''}`}>
-            <a href={CV_URL} download className="footer-link">
-              <PiDownloadSimple size={15} aria-hidden="true" />
-              Descargar CV
-            </a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-link">
-              <FaInstagram size={15} aria-hidden="true" />
-              Instagram
             </a>
           </div>
         </div>

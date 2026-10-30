@@ -3847,9 +3847,12 @@ label[for] {
 }
 
 /* El botón flotante de WhatsApp se aparta mientras el menú está abierto */
+body.cierre-visible .wa-float-btn,
 body.menu-open .wa-float-btn {
   /* Solo visibilidad: su animación de entrada controla opacidad y transform,
-     y anularla la reiniciaría cada vez que el menú se cierra. */
+     y anularla la reiniciaría cada vez que el menú se cierra. También se
+     esconde mientras el cierre de la página (con su propio botón de WhatsApp)
+     está en pantalla. */
   visibility: hidden;
   pointer-events: none;
 }
@@ -3894,31 +3897,6 @@ body.menu-open .wa-float-btn {
   gap: 12px;
   transition-delay: 160ms;
 }
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 28px;
-  margin-top: 22px;
-  transition-delay: 240ms;
-}
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 2px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1.5px;
-  text-decoration-color: var(--border-color);
-  transition: color 180ms ease, text-decoration-color 180ms ease;
-}
-.footer-link:hover { color: var(--accent-strong); text-decoration-color: currentColor; }
-.footer-link:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
 .footer-bottom {
   padding-top: 24px;
   border-top: 1px solid var(--border-color);
