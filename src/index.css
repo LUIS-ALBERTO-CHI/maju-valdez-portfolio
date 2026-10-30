@@ -3950,4 +3950,17 @@ body.menu-open .wa-float-btn {
 }
 .surface-oscuro .section-title { color: var(--text-dark); }
 .surface-oscuro .section-title span { color: var(--accent-soft); }
+/* En modo oscuro el resto de la página ya es carbón: el cuarto sube de
+   saturación, los brillos rosa se ven más y las tarjetas se separan del fondo
+   con un borde más claro, para que siga leyéndose como la sala especial. */
+.dark .surface-oscuro {
+  --bg-card: #3d1c2b;
+  --bg-element: #4c2538;
+  --border-color: rgba(249,168,212,0.34);
+  --text-secondary: #e3c3cf;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(244,114,182,0.26), transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(249,168,212,0.18), transparent 50%),
+    linear-gradient(180deg, #2f1522 0%, #44203a 100%);
+}
 
