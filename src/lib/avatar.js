@@ -3,9 +3,11 @@
  * Se usan cuando no hay foto de la persona (RecomendacionesSection).
  */
 
+/* Rosas y ciruelas profundos: las iniciales van en blanco y cada color da
+   al menos 4.9:1 (AA). Los rosas claros del sistema quedaban en 1.9–3.8. */
 const AVATAR_COLORS = [
-  '#f06c88', '#f4a7b9', '#e879a0', '#c2668e',
-  '#b58390', '#e8a4c4', '#d46a8c', '#f0849c',
+  '#c93a5e', '#b23a6a', '#a8405c', '#925565',
+  '#9e4a78', '#b04a5e', '#8f3d5a', '#a6365c',
 ];
 
 /** Color estable derivado del nombre — la misma persona siempre obtiene el mismo */

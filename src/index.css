@@ -1905,6 +1905,8 @@ body {
   color: #fff;
   font-size: 0.85rem;
   font-weight: 700;
+  /* Anillo tenue: el avatar es oscuro y, sin él, se fundiría con la tarjeta del cuarto ciruela */
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--accent-strong) 38%, transparent);
 }
 
 /* La foto llena el círculo; el color de fondo queda como respaldo mientras carga */
@@ -3529,12 +3531,13 @@ label[for] {
 .deck-pager-btn,
 .edu-old-page-btn,
 .proy-nav-btn,
-.reco-nav-btn,
 .vid-nav-btn,
 #dark-mode-toggle,
 .menu-toggle {
   position: relative;
 }
+/* .reco-nav-btn no entra: ya mide 44x44 y va en `position: absolute` a los
+   lados del carrusel; un `relative` aquí lo sacaba de su sitio. */
 .deck-pager-btn::after,
 .edu-old-page-btn::after,
 #dark-mode-toggle::after,
