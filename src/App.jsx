@@ -193,7 +193,7 @@ export default function App() {
             />
 
             {/* Above-fold: eager */}
-            <Hero />
+            <Hero ready={splashDone} />
             <BrandsStrip />
 
             {/* Below-fold: lazy — load only when React renders them */}

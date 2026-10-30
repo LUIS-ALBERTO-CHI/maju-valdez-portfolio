@@ -426,7 +426,8 @@ section + section {
   color: var(--text-dark);
   text-wrap: balance;
 }
-.hero-title span { color: var(--accent-strong); }
+.hero-title-accent { color: var(--accent-strong); }
+.hero-letter { display: inline-block; }
 .hero-role {
   margin: 4px 0 0;
   font-size: clamp(1.3rem, 6vw, 2.25rem);
@@ -533,6 +534,7 @@ section + section {
     0 0 0 6px var(--accent-soft),
     0 10px 30px rgba(240,108,136,0.25);
 }
+.hero-photo-inner { width: 100%; height: 100%; }
 .hero-photo img {
   display: block;
   width: 100%;
@@ -629,12 +631,21 @@ section + section {
     background: none;
     box-shadow: none;
   }
+  .hero-center { perspective: 1000px; }
+  .hero-photo {
+    --tilt-x: 0;
+    --tilt-y: 0;
+    transform: rotateX(calc(var(--tilt-y) * -4deg)) rotateY(calc(var(--tilt-x) * 5deg));
+    transform-style: preserve-3d;
+    transition: transform 320ms cubic-bezier(0.22,1,0.36,1);
+  }
   .hero-photo::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(calc(-50% + var(--tilt-x) * -16px), calc(var(--tilt-y) * -6px));
+    transition: transform 420ms cubic-bezier(0.22,1,0.36,1);
     width: 600px;
     height: 300px;
     background-color: var(--accent-soft);
@@ -648,7 +659,13 @@ section + section {
     height: auto;
     object-fit: initial;
     transform: none;
-    filter: drop-shadow(0 0 15px var(--accent-soft));
+    filter: drop-shadow(
+      calc(var(--tilt-x) * -14px)
+      calc(6px + var(--tilt-y) * -10px)
+      16px
+      var(--accent-soft)
+    );
+    transition: filter 320ms cubic-bezier(0.22,1,0.36,1);
   }
 
   /* Pruebas apiladas en la columna derecha */
@@ -674,8 +691,81 @@ section + section {
   }
 }
 
+/* ── Entrada coreografiada ──
+   .hero--pending lo pone React en el primer render (todo oculto, sin salto);
+   .hero--enter arranca la secuencia cuando el splash termina. Sin JavaScript
+   ninguna de las dos clases existe y el hero se ve completo. */
+.hero { --hero-ease: cubic-bezier(0.22,1,0.36,1); }
+
+.hero--pending .hero-hello,
+.hero--pending .hero-letter,
+.hero--pending .hero-role,
+.hero--pending .hero-fullname,
+.hero--pending .hero-ctas,
+.hero--pending .hero-link,
+.hero--pending .hero-quote,
+.hero--pending .hero-proof,
+.hero--pending .hero-photo-inner { opacity: 0; }
+.hero--pending .hero-photo::before { clip-path: inset(100% 0 0 0); }
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-hello-in {
+  0%   { opacity: 0; transform: translateY(-26px) scale(0.9); }
+  70%  { opacity: 1; transform: translateY(4px) scale(1.02); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes hero-letter-in {
+  from { opacity: 0; transform: translateY(0.35em) rotate(4deg); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-photo-pop {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-photo-settle {
+  0%   { opacity: 0; transform: translateY(48px); filter: blur(10px); }
+  65%  { filter: blur(0); }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes hero-arch-in {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+.hero--enter .hero-photo-inner { animation: hero-photo-pop 600ms var(--hero-ease) 80ms both; }
+.hero--enter .hero-hello      { animation: hero-hello-in 520ms var(--hero-ease) 360ms both; }
+.hero--enter .hero-letter     { animation: hero-letter-in 420ms var(--hero-ease) calc(500ms + var(--i) * 32ms) both; }
+.hero--enter .hero-role       { animation: hero-rise 500ms var(--hero-ease) 760ms both; }
+.hero--enter .hero-fullname   { animation: hero-rise 500ms var(--hero-ease) 820ms both; }
+.hero--enter .hero-ctas       { animation: hero-rise 520ms var(--hero-ease) 900ms both; }
+.hero--enter .hero-link       { animation: hero-rise 520ms var(--hero-ease) 980ms both; }
+.hero--enter .hero-proof      { animation: hero-rise 520ms var(--hero-ease) 1020ms both; }
+.hero--enter .hero-quote      { animation: hero-rise 520ms var(--hero-ease) 1080ms both; }
+
+@media (min-width: 1024px) {
+  .hero--enter .hero-photo::before { animation: hero-arch-in 620ms var(--hero-ease) both; }
+  .hero--enter .hero-photo-inner   { animation: hero-photo-settle 760ms var(--hero-ease) 140ms both; }
+}
+
+@keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .hero-btn:hover { transform: none; }
+  .hero--enter .hero-photo-inner,
+  .hero--enter .hero-photo::before,
+  .hero--enter .hero-hello,
+  .hero--enter .hero-letter,
+  .hero--enter .hero-role,
+  .hero--enter .hero-fullname,
+  .hero--enter .hero-ctas,
+  .hero--enter .hero-link,
+  .hero--enter .hero-proof,
+  .hero--enter .hero-quote { animation: hero-fade 400ms ease both; }
+  .hero-photo,
+  .hero-photo::before,
+  .hero-photo img { transition: none; }
 }
 
 /* ==============================
