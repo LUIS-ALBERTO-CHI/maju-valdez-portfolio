@@ -34,14 +34,18 @@ export default function BrandsStrip() {
         <ul
           className="grid list-none p-0 justify-items-center items-center"
           style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '18px 16px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: '40px 30px',
           }}
         >
-          {/* Fichas iguales: cada logo en su tarjeta, en gris al reposo y a color al pasar el cursor */}
           {BRANDS.map(({ src, alt }) => (
-            <li key={alt} className="brand-tile">
-              <img src={src} alt={alt} loading="lazy" />
+            <li key={alt} className="flex items-center justify-center">
+              <img
+                src={src}
+                alt={alt}
+                className="w-auto max-w-full object-contain transition-transform duration-300 hover:scale-[1.08]"
+                style={{ height: '95px' }}
+              />
             </li>
           ))}
         </ul>
