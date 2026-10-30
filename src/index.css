@@ -3569,3 +3569,307 @@ label[for] {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==============================
+   Menú móvil (hamburguesa)
+   ============================== */
+/*
+  El panel vive en .menu-overlay. Cerrado queda con visibility:hidden e inert,
+  así ni el teclado ni el lector de pantalla llegan a enlaces invisibles.
+  .menu-panel se centra con margin:auto: si el contenido no cabe (teléfonos
+  bajos) se alinea arriba y el panel se desplaza, sin recortar "Inicio".
+*/
+.menu-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  z-index: 210;
+}
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+.menu-toggle-bars {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+.menu-toggle-bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    top 300ms cubic-bezier(0.22,1,0.36,1),
+    transform 300ms cubic-bezier(0.22,1,0.36,1),
+    opacity 200ms ease;
+}
+.menu-toggle-bars span:nth-child(1) { top: 0; }
+.menu-toggle-bars span:nth-child(2) { top: 7px; }
+.menu-toggle-bars span:nth-child(3) { top: 14px; }
+.menu-toggle.is-open .menu-toggle-bars span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+.menu-toggle.is-open .menu-toggle-bars span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-toggle.is-open .menu-toggle-bars span:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--header-h) + 36px) 24px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: var(--menu-overlay-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 380ms cubic-bezier(0.22,1,0.36,1), visibility 0s;
+}
+/* Manchas decorativas del estudio rosa, fijas aunque el panel se desplace */
+.menu-overlay::before,
+.menu-overlay::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+.menu-overlay::before {
+  top: -10%; right: -8%;
+  width: 260px; height: 260px;
+  background: rgba(240,108,136,0.13);
+  filter: blur(60px);
+}
+.menu-overlay::after {
+  bottom: -8%; left: -6%;
+  width: 220px; height: 220px;
+  background: rgba(244,167,185,0.10);
+  filter: blur(50px);
+}
+
+.menu-panel {
+  margin: auto;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.menu-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.04);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.dark .menu-link-icon { background: rgba(255,255,255,0.05); }
+.menu-link:hover,
+.menu-link:focus-visible {
+  background: rgba(240,108,136,0.08);
+  color: var(--accent-strong);
+}
+.menu-link:hover .menu-link-icon,
+.menu-link:focus-visible .menu-link-icon { color: var(--accent-strong); }
+.menu-link:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+.menu-link.is-active {
+  font-weight: 700;
+  color: var(--accent-strong);
+  background: rgba(240,108,136,0.10);
+  border-color: rgba(240,108,136,0.25);
+}
+.menu-link.is-active .menu-link-icon {
+  background: rgba(240,108,136,0.15);
+  color: var(--accent-strong);
+}
+.menu-link-dot {
+  margin-left: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-hot);
+  flex-shrink: 0;
+}
+
+.menu-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 4px 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.menu-divider::before,
+.menu-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.menu-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-color);
+}
+.menu-social {
+  display: flex;
+  gap: 16px;
+}
+.menu-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 200ms cubic-bezier(0.22,1,0.36,1), color 200ms ease, border-color 200ms ease;
+}
+.menu-social-btn:hover,
+.menu-social-btn:focus-visible {
+  transform: translateY(-2px);
+  color: var(--accent-strong);
+  border-color: var(--accent-soft);
+}
+.menu-social-btn:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+.menu-theme {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.menu-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: background-color 250ms ease;
+}
+.menu-switch[aria-checked="true"] { background: var(--accent-hot); }
+.menu-switch:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+.menu-switch-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: transform 250ms cubic-bezier(0.22,1,0.36,1);
+}
+.menu-switch[aria-checked="true"] .menu-switch-knob { transform: translateX(24px); }
+
+/* Entrada escalonada: cada fila llega 45 ms después de la anterior */
+.menu-link,
+.menu-divider,
+.menu-foot {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.menu-overlay.is-open .menu-link,
+.menu-overlay.is-open .menu-divider,
+.menu-overlay.is-open .menu-foot {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 300ms ease calc(var(--i, 0) * 45ms),
+    transform 300ms cubic-bezier(0.22,1,0.36,1) calc(var(--i, 0) * 45ms),
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+/* El botón flotante de WhatsApp se aparta mientras el menú está abierto */
+body.menu-open .wa-float-btn {
+  /* Solo visibilidad: su animación de entrada controla opacidad y transform,
+     y anularla la reiniciaría cada vez que el menú se cierra. */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .menu-overlay { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay,
+  .menu-overlay.is-open,
+  .menu-overlay.is-open .menu-link,
+  .menu-overlay.is-open .menu-divider,
+  .menu-overlay.is-open .menu-foot,
+  .menu-toggle-bars span,
+  .menu-switch-knob { transition: none; }
+}
