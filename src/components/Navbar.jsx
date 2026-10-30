@@ -1,26 +1,31 @@
 import { Fragment, useState, useEffect, useRef } from 'react';
 import { PiBriefcase, PiCaretDown, PiChatCircleText, PiGraduationCap, PiHouse, PiImage, PiList, PiMoon, PiPlayCircle, PiShareNetwork, PiStack, PiSun, PiX } from 'react-icons/pi';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { INSTAGRAM_URL, LINKEDIN_URL } from '../data/contacto';
 
-const NAV_LINKS = [
-  { href: 'inicio',        label: 'Inicio',        Icon: PiHouse },
-  { href: 'experiencia',   label: 'Experiencia',   Icon: PiBriefcase },
-  { href: 'educacion',     label: 'Educación',     Icon: PiGraduationCap },
-  { href: 'recomendaciones', label: 'Recomendaciones', Icon: PiChatCircleText },
-];
+/* Mismo orden que las secciones de la página: trabajo → prueba social → trayectoria */
+const HOME_LINK = { href: 'inicio', label: 'Inicio', Icon: PiHouse };
 
 const PORTFOLIO_LINKS = [
   { href: 'proyectos', label: 'Diseños',  Icon: PiImage },
-  { href: 'cuentas',   label: 'Cuentas',  Icon: PiShareNetwork },
   { href: 'videos',    label: 'Videos',   Icon: PiPlayCircle },
+  { href: 'cuentas',   label: 'Cuentas',  Icon: PiShareNetwork },
 ];
 
-const ALL_LINKS = [...NAV_LINKS, ...PORTFOLIO_LINKS];
+const TRAYECTORIA_LINKS = [
+  { href: 'recomendaciones', label: 'Recomendaciones', Icon: PiChatCircleText },
+  { href: 'experiencia',     label: 'Experiencia',     Icon: PiBriefcase },
+  { href: 'educacion',       label: 'Educación',       Icon: PiGraduationCap },
+];
+
+const ALL_LINKS = [HOME_LINK, ...PORTFOLIO_LINKS, ...TRAYECTORIA_LINKS];
 const PORTFOLIO_IDS = PORTFOLIO_LINKS.map((l) => l.href);
+/* Separadores del menú móvil: índice del primer enlace de cada grupo */
+const MENU_GROUPS = { 1: 'Portafolio', [1 + PORTFOLIO_LINKS.length]: 'Trayectoria' };
 
 const SOCIAL_LINKS = [
-  { url: 'https://www.instagram.com/hobishinee_',                              Icon: FaInstagram,  label: 'Instagram' },
-  { url: 'https://mx.linkedin.com/in/maria-julia-valdez-navarro-42696828a',    Icon: FaLinkedinIn, label: 'LinkedIn' },
+  { url: INSTAGRAM_URL, Icon: FaInstagram,  label: 'Instagram' },
+  { url: LINKEDIN_URL,  Icon: FaLinkedinIn, label: 'LinkedIn' },
 ];
 
 const MENU_ID = 'menu-movil';
@@ -146,7 +151,7 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
 
         {/* Enlaces de escritorio */}
         <ul className="hidden lg:flex items-center relative gap-1 list-none m-0 p-0">
-          {NAV_LINKS.map(({ href, label, Icon }) => (
+          {[HOME_LINK].map(({ href, label, Icon }) => (
             <li key={href}>
               <a
                 href={`#${href}`}
@@ -188,6 +193,20 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
               ))}
             </ul>
           </li>
+
+          {TRAYECTORIA_LINKS.map(({ href, label, Icon }) => (
+            <li key={href}>
+              <a
+                href={`#${href}`}
+                onClick={(e) => handleNavClick(e, href)}
+                className={`nav-link flex items-center gap-2 px-5 py-2.5 rounded-[20px] text-sm font-medium no-underline ${activeSection === href ? 'active' : ''}`}
+                aria-current={activeSection === href ? 'true' : undefined}
+              >
+                <Icon size={15} aria-hidden="true" />
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         {/* Acciones */}
@@ -236,9 +255,9 @@ export default function Navbar({ darkMode, setDarkMode, activeSection }) {
               const isActive = activeSection === href;
               return (
                 <Fragment key={href}>
-                  {i === NAV_LINKS.length && (
+                  {MENU_GROUPS[i] && (
                     <p className="menu-divider" style={{ '--i': i }}>
-                      <span>Portafolio</span>
+                      <span>{MENU_GROUPS[i]}</span>
                     </p>
                   )}
                   <a

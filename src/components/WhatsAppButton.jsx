@@ -1,8 +1,5 @@
 import { FaWhatsapp } from 'react-icons/fa';
-
-const WA_NUMBER  = '529993237089';
-const WA_MESSAGE = encodeURIComponent('Hola Maju, vi tu portafolio y me gustaría platicar contigo 👋');
-const WA_URL     = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
+import { WHATSAPP_URL as WA_URL } from '../data/contacto';
 
 export default function WhatsAppButton() {
   return (

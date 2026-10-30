@@ -1,78 +1,64 @@
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
+import { PiDownloadSimple } from 'react-icons/pi';
+import { LINKEDIN_URL, INSTAGRAM_URL, WHATSAPP_URL } from '../data/contacto';
 
-const SOCIALS = [
-  {
-    href: 'https://www.instagram.com/hobishinee_?igsh=MXZzcHR3ajk4anRwMw==',
-    Icon: FaInstagram,
-    label: 'Instagram',
-  },
-  {
-    href: 'https://mx.linkedin.com/in/maria-julia-valdez-navarro-42696828a',
-    Icon: FaLinkedinIn,
-    label: 'LinkedIn',
-  },
-];
+const CV_URL = '/files/Maria Julia Valdez Navarro CV 2026.pdf';
 
+/**
+ * Cierre de la página. Es el último momento para convertir, así que repite la
+ * jerarquía del hero: LinkedIn como acción principal (PRODUCT.md), WhatsApp
+ * y CV como apoyo.
+ */
 export default function Footer() {
   const [titleRef, titleVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const year = new Date().getFullYear();
 
   return (
     <footer className="relative" style={{ backgroundColor: 'var(--bg-element)', zIndex: 1 }}>
-      {/* Wave top */}
       <div className="footer-wave" />
 
       <div className="max-w-[1200px] mx-auto px-5 pb-8">
-        <div className="py-14">
-          <div className="flex flex-col items-center text-center">
-            <h2
-              ref={titleRef}
-              className={`section-title fade-in ${titleVisible ? 'visible' : ''}`}
-              style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}
-            >
-              Abierta a Oportunidades
-            </h2>
+        <div className="footer-cta">
+          <h2
+            ref={titleRef}
+            className={`section-title fade-in ${titleVisible ? 'visible' : ''}`}
+            style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.8rem)', marginBottom: '1.5rem' }}
+          >
+            Abierta a <span>oportunidades</span>
+          </h2>
 
-            <p
-              className="max-w-xl text-base leading-relaxed mb-8 mx-auto"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              Actualmente busco unirme a un equipo innovador donde pueda aportar mi pasión por el
-              marketing y la estrategia digital. Si mi perfil encaja con tu empresa,{' '}
-              <span style={{ color: 'var(--accent-strong)', fontWeight: 600 }}>¡me encantaría conversar!</span>
-            </p>
+          <p className={`footer-text fade-in ${titleVisible ? 'visible' : ''}`}>
+            Actualmente busco unirme a un equipo innovador donde pueda aportar mi pasión por el
+            marketing y la estrategia digital. Si mi perfil encaja con tu empresa,{' '}
+            <strong>¡me encantaría conversar!</strong>
+          </p>
 
-            {/* Social links */}
-            <div className="flex items-center gap-5 mt-2">
-              {SOCIALS.map(({ href, Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-110"
-                  style={{
-                    color: 'var(--text-dark)',
-                    background: 'var(--bg-card)',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                    border: '1px solid var(--border-color)',
-                    textDecoration: 'none',
-                  }}
-                >
-                  <Icon size={22} />
-                </a>
-              ))}
-            </div>
+          <div className={`footer-actions fade-in ${titleVisible ? 'visible' : ''}`}>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hero-btn hero-btn--primary">
+              <FaLinkedinIn size={16} aria-hidden="true" />
+              Conectar en LinkedIn
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hero-btn hero-btn--secondary">
+              <FaWhatsapp size={18} aria-hidden="true" />
+              Escribir por WhatsApp
+            </a>
+          </div>
+
+          <div className={`footer-links fade-in ${titleVisible ? 'visible' : ''}`}>
+            <a href={CV_URL} download className="footer-link">
+              <PiDownloadSimple size={15} aria-hidden="true" />
+              Descargar CV
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-link">
+              <FaInstagram size={15} aria-hidden="true" />
+              Instagram
+            </a>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="border-t pt-6 text-center text-sm"
-          style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-        >
-          <p>© 2025 Maju Valdez. Todos los derechos reservados.</p>
+        <div className="footer-bottom">
+          <p>© {year} Maju Valdez. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

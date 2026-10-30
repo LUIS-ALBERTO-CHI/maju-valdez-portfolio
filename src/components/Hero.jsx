@@ -3,9 +3,9 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { PiDownloadSimple, PiImages } from 'react-icons/pi';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { RECOMENDACIONES } from '../data/recomendaciones';
+import { LINKEDIN_URL } from '../data/contacto';
 
 const CV_URL = '/files/Maria Julia Valdez Navarro CV 2026.pdf';
-const LINKEDIN_URL = 'https://mx.linkedin.com/in/maria-julia-valdez-navarro-42696828a';
 
 /* El título se parte en letras para la entrada escalonada. "Maju" va en acento. */
 const TITLE = [

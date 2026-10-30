@@ -25,7 +25,7 @@ const VideoModal        = lazy(() => import('./components/VideoModal'));
 const ImageModal        = lazy(() => import('./components/ImageModal'));
 const TestimonioPage    = lazy(() => import('./pages/TestimonioPage'));
 
-const SECTIONS = ['inicio', 'experiencia', 'educacion', 'certificaciones', 'proyectos', 'cuentas', 'videos', 'recomendaciones'];
+const SECTIONS = ['inicio', 'proyectos', 'videos', 'cuentas', 'recomendaciones', 'experiencia', 'educacion', 'certificaciones'];
 
 // Minimal fallback — invisible, sections animate in via IntersectionObserver anyway
 const Blank = () => <div aria-hidden="true" />;
@@ -197,6 +197,20 @@ export default function App() {
             <BrandsStrip />
 
             {/* Below-fold: lazy — load only when React renders them */}
+            {/* Primero el trabajo (PRODUCT.md: el reclutador viene a ver piezas reales),
+                luego la prueba social y al final la trayectoria. */}
+            <Suspense fallback={<Blank />}>
+              <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <CuentasSection />
+            </Suspense>
+            <Suspense fallback={<Blank />}>
+              <RecomendacionesSection />
+            </Suspense>
             <Suspense fallback={<Blank />}>
               <ExperienceSection />
             </Suspense>
@@ -205,18 +219,6 @@ export default function App() {
             </Suspense>
             <Suspense fallback={<Blank />}>
               <CertificationsSection />
-            </Suspense>
-            <Suspense fallback={<Blank />}>
-              <ProyectosSection onImageClick={(src, alt) => setImageSrc({ src, alt })} />
-            </Suspense>
-            <Suspense fallback={<Blank />}>
-              <CuentasSection />
-            </Suspense>
-            <Suspense fallback={<Blank />}>
-              <VideosSection onVideoClick={(src) => setVideoSrc(src)} />
-            </Suspense>
-            <Suspense fallback={<Blank />}>
-              <RecomendacionesSection />
             </Suspense>
             <Suspense fallback={<Blank />}>
               <SoftwareStrip />
