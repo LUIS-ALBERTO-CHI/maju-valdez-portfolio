@@ -18,7 +18,7 @@ export default function BrandsStrip() {
       style={{
         marginTop: '-180px',
         paddingTop: '90px',
-        paddingBottom: '100px',
+        paddingBottom: '56px',
         position: 'relative',
         zIndex: 96,
       }}
