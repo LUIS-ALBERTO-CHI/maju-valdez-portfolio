@@ -160,7 +160,7 @@ export default function Hero({ ready = true }) {
                 src="/files/foto.png"
                 alt="Maju Valdez (María Julia Valdez Navarro), Community Manager en Mérida, Yucatán"
                 width="853"
-                height="1307"
+                height="1280"
                 fetchPriority="high"
               />
             </div>
